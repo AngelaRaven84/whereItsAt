@@ -1,20 +1,21 @@
 import { Routes, Route } from 'react-router-dom';
 import RootLayout from '../layouts/RootLayout';
 import Home from '../Pages/Home';
-import Products from '../Pages/Products';
-import ProductDetails from '../Pages/ProductDetails';
+import Events from '../Pages/Events';
+import EventDetails from '../Pages/EventDetails';
 import Cart from '../Pages/Cart';
 import NotFound from '../Pages/NotFound';
 
 function AppRoutes() {
 	return (
 		<Routes>
-			<Route path='/' element={<RootLayout />} />
-			<Route index element={<Home />} />
-			<Route path='products' element={<Products />} />
-			<Route path='products/:id' element={<ProductDetails />} />
-			<Route path='cart' element={<Cart />} />
-			<Route path='*' element={<NotFound />} />
+			<Route path='/' element={<RootLayout />}>
+				<Route index element={<Home />} />
+				<Route path='events' element={<Events />} />
+				<Route path='events/:id' element={<EventDetails />} />
+				<Route path='cart' element={<Cart />} />
+				<Route path='*' element={<NotFound />} />
+			</Route>
 		</Routes>
 	);
 }
