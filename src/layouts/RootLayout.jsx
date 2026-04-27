@@ -1,17 +1,13 @@
 import { Outlet } from 'react-router-dom';
-import Header from '../components/Header/Header';
-import FooterNav from '../components/FooterNav/FooterNav';
+//import Header from '../components/Header/Header';
+//import FooterNav from '../components/FooterNav/FooterNav';
 
-const RootLayout = () => {
+function RootLayout() {
 	return (
 		<>
-			<Header />
-			<main>
-				<Outlet />
-			</main>
-			<FooterNav />
+			<Outlet />
 		</>
 	);
-};
+}
 
 export default RootLayout;
