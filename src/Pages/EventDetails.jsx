@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getEventsById } from '../api/eventsApi';
+import useCartStore from '../store/useCartStore';
 
 function EventDetails() {
+	const addToCart = useCartStore((state) => state.addToCart);
+
 	const { id } = useParams();
 
 	const [event, setEvent] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const [quantity, setQuantity] = useState(1);
 
 	useEffect(() => {
 		async function fetchEvent() {
@@ -36,6 +40,10 @@ function EventDetails() {
 				{event.when.date} . {event.when.from}-{event.when.to}
 			</p>
 			<p>{event.price}</p>
+
+			<button onClick={() => addToCart({ ...event, quantity })}>
+				Köp {quantity} biljett(er)
+			</button>
 		</article>
 	);
 }
