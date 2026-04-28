@@ -14,7 +14,7 @@ function AppRoutes() {
 			<Route path='/' element={<RootLayout />}>
 				<Route index element={<Home />} />
 				<Route path='events' element={<Events />} />
-				<Route path='events/:id' element={<EventDetails />} />
+				<Route path='/events/:id' element={<EventDetails />} />
 				<Route path='cart' element={<Cart />} />
 				<Route path='order' element={<Order />} />
 				<Route path='tickets' element={<Tickets />} />
