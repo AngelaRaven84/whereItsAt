@@ -5,11 +5,10 @@ const Header = () => {
 	return (
 		<header className='header'>
 			<Link to='/' className='logo'>
-				ShopApp
+				Where It's @
 			</Link>
 
 			<nav className='desktop-nav'>
-				<Link to='/products'>Produkter</Link>
 				<Link to='/cart'>Kundvagn</Link>
 			</nav>
 		</header>
