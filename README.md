@@ -1,16 +1,22 @@
-# React + Vite
+AXIOS
+för enklare API-anrop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+REACT-ROUTER-DOM
+För att ha en enkel routing mellan sidor
 
-Currently, two official plugins are available:
+SWIPER
+För att göra enkla sliders för att bläddra mellan biljetter på tickets-sidan.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+MOTION
+Vill göra lite snygga animationer och testa hur den här fungerar
 
-## React Compiler
+REACT-HOT-TOAST
+Är bra för att få upp lite pop-up meddelanden som man kanske kan lägga felmeddelanden i
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+UUID
+Tänkte att den här kunde vara bra för att skapa enklare unika Id:n för att fixa den lilla extra tankenöten du gav oss.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+REACT-CONFETTI
+Vem vill inte ha lite konfetti när man ska på event och ha roligt, en liten förfest innan förfesten börjar ens XD
+ZUSTAND
+Ett sätt att kunna hantera global states, i det här fallet så är det kundvagnen främst som drar nytta av det.
