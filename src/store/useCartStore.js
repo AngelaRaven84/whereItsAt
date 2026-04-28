@@ -6,19 +6,20 @@ const useCartStore = create((set) => ({
 	addToCart: (event) =>
 		set((state) => {
 			const existingEvent = state.cart.find((item) => item.id === event.id);
+			const quantityToAdd = event.quantity || 1;
 
 			if (existingEvent) {
 				return {
 					cart: state.cart.map((item) =>
 						item.id === event.id
-							? { ...item, quantity: item.quantity + 1 }
+							? { ...item, quantity: item.quantity + quantityToAdd }
 							: item,
 					),
 				};
 			}
 
 			return {
-				cart: [...state.cart, { ...event, quantity: 1 }],
+				cart: [...state.cart, { ...event, quantity: quantityToAdd }],
 			};
 		}),
 

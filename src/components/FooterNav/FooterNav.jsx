@@ -4,13 +4,16 @@ import './footerNav.css';
 
 function FooterNav() {
 	const cart = useCartStore((state) => state.cart);
+	const totalTickets = cart.reduce((sum, item) => {
+		return sum + item.quantity;
+	}, 0);
 
 	return (
 		<nav className='footer-nav'>
 			<NavLink to='/events'>Events</NavLink>
-			<NavLink to='/order' className='cartLink'>
+			<NavLink to='/cart' className='cartLink'>
 				Kundvagn
-				{cart.length > 0 && <span className='badge'>{cart.length}</span>}
+				{totalTickets > 0 && <span className='badge'>{totalTickets}</span>}
 			</NavLink>
 			<NavLink to='/tickets'>Biljetter</NavLink>
 		</nav>
