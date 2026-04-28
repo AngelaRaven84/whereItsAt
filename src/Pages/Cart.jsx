@@ -1,28 +1,43 @@
+import { useNavigate } from 'react-router-dom';
 import useCartStore from '../store/useCartStore';
 
 function Cart() {
-	const cart = useCartStore((state) => state.cart);
-	const increaseQuantity = useCartStore((state) => state.increaseQuantity);
-	const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
-	const removeFromCart = useCartStore((state) => state.removeFromCart);
-	const clearCart = useCartStore((state) => state.clearCart);
+	const navigate = useNavigate();
 
-	const totalPrice = cart.reduce((sum, item) => {
-		return sum + item.price * item.quantity;
-	}, 0);
+	const {
+		cart,
+		increaseQuantity,
+		decreaseQuantity,
+		removeFromCart,
+		clearCart,
+	} = useCartStore();
+
+	const totalPrice = cart.reduce(
+		(total, item) => total + item.price * item.quantity,
+		0,
+	);
 
 	if (cart.length === 0) {
-		return <p>Din kundvagn är tom.</p>;
+		return (
+			<main>
+				<h1>Kundvagn</h1>
+				<p>Din kundvagn är tom.</p>
+			</main>
+		);
 	}
 
 	return (
-		<section>
+		<main>
 			<h1>Kundvagn</h1>
 			{cart.map((item) => (
 				<article key={item.id}>
 					<h2>{item.name}</h2>
-					<p>{item.where}</p>
-					<p>{item.price} kr/st</p>
+					<p>Plats: {item.where}</p>
+					<p>Datum: {item.when.date}</p>
+					<p>
+						Tid: {item.when.from} - {item.when.to}
+					</p>
+					<p>Pris: {item.price} kr/st</p>
 
 					<div>
 						<button onClick={() => decreaseQuantity(item.id)}>-</button>
@@ -39,8 +54,10 @@ function Cart() {
 
 			<h2>Summa: {totalPrice} kr</h2>
 
+			<button onClick={() => navigate('/order')}>Skicka order</button>
+
 			<button onClick={clearCart}>Töm kundvagn</button>
-		</section>
+		</main>
 	);
 }
 
