@@ -1,50 +1,71 @@
 import { create } from 'zustand';
 
-const useCartStore = create((set) => ({
+const useCartStore = create((set, get) => ({
 	cart: [],
+	purchasedTickets: [],
 
-	addToCart: (event) =>
-		set((state) => {
-			const existingEvent = state.cart.find((item) => item.id === event.id);
-			const quantityToAdd = event.quantity || 1;
+	addToCart: (event) => {
+		const cart = get().cart;
+		const quantityToAdd = event.quantity || 1;
+		const existingEvent = cart.find((item) => item.id === event.id);
 
-			if (existingEvent) {
-				return {
-					cart: state.cart.map((item) =>
-						item.id === event.id
-							? { ...item, quantity: item.quantity + quantityToAdd }
-							: item,
-					),
-				};
-			}
+		if (existingEvent) {
+			set({
+				cart: cart.map((item) =>
+					item.id === event.id
+						? { ...item, quantity: item.quantity + quantityToAdd }
+						: item,
+				),
+			});
+		} else {
+			set({
+				cart: [...cart, { ...event, quantity: 1 }],
+			});
+		}
+	},
 
-			return {
-				cart: [...state.cart, { ...event, quantity: quantityToAdd }],
-			};
-		}),
-
-	increaseQuantity: (id) =>
-		set((state) => ({
-			cart: state.cart.map((item) =>
+	increaseQuantity: (id) => {
+		set({
+			cart: get().cart.map((item) =>
 				item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
 			),
-		})),
+		});
+	},
 
-	decreaseQuantity: (id) =>
-		set((state) => ({
-			cart: state.cart
-				.map((item) =>
+	decreaseQuantity: (id) => {
+		set({
+			cart: get()
+				.cart.map((item) =>
 					item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
 				)
 				.filter((item) => item.quantity > 0),
-		})),
+		});
+	},
 
-	removeFromCart: (id) =>
-		set((state) => ({
-			cart: state.cart.filter((event) => event.id !== id),
-		})),
+	removeFromCart: (id) => {
+		set({
+			cart: get().cart.filter((item) => item.id !== id),
+		});
+	},
 
-	clearCart: () => set({ cart: [] }),
+	clearCart: () => {
+		set({ cart: [] });
+	},
+
+	checkout: () => {
+		const orderNumber = crypto.randomUUID();
+
+		const tickets = get().cart.map((item) => ({
+			...item,
+			ticketId: crypto.randomUUID(),
+			orderNumber,
+		}));
+
+		set({
+			purchasedTickets: tickets,
+			cart: [],
+		});
+	},
 }));
 
 export default useCartStore;
