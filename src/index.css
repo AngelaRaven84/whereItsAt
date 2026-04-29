@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sansita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
 
 :root {
 	/* COLORS */
@@ -9,7 +9,7 @@
 	--text: #ffffff;
 	--text-muted: #d7d5e3;
 	--border: #f56b9a;
-	--line: #rgba(255, 255, 255, 0.25);
+	--line: rgba(255, 255, 255, 0.25);
 
 	/* SPACING */
 	--space-xs: 0.5rem;
@@ -24,6 +24,7 @@
 
 	/* FONTS */
 	--font-main: 'Sansita One', cursive;
+	--font-second: 'Fira Sans', sans-serif;
 }
 
 * {
@@ -107,7 +108,7 @@ img {
 .btn {
 	width: 100%;
 	padding: var(--space-md);
-	border-radius: var(--radius--sm);
+	border-radius: var(--radius-sm);
 	background: var(--accent);
 	color: var(--text);
 	font-weight: 700;
@@ -134,10 +135,10 @@ img {
 	background: var(--bg-light);
 	border: 1px solid transparent;
 	border-radius: var(--radius-sm);
-	color: var(--rext);
+	color: var(--text);
 }
 
-.input:placeholder {
+.input::placeholder {
 	color: rgba(255, 255, 255, 0.45);
 }
 
@@ -207,4 +208,54 @@ img {
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-md);
+}
+
+/* HOME */
+
+.home {
+	position: relative;
+	padding: var(--space-xl);
+}
+
+.home__content {
+	min-height: calc(100vh - (var(--space-xl) * 2));
+	flex-direction: column;
+	text-align: center;
+	transform: translateY(-1.5rem);
+}
+
+.home__icon {
+	width: 150px;
+	margin-bottom: var(--space-md);
+}
+
+.home__title {
+	margin-bottom: var(--space-sm);
+}
+
+.home__tagline {
+	font-family: var(--font-main);
+	font-size: 1.05rem;
+	font-style: italic;
+	color: var(--text);
+}
+
+.home__dots {
+	position: absolute;
+	left: 50%;
+	bottom: var(--space-xl);
+	transform: translateX(-50%);
+	display: flex;
+	gap: var(--space-sm);
+}
+
+.home__dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.25);
+}
+
+.home__dot--active {
+	background: var(--text);
 }

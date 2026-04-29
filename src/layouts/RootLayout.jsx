@@ -4,13 +4,9 @@ import FooterNav from '../components/FooterNav/FooterNav';
 
 function RootLayout() {
 	return (
-		<>
-			<Header />
-			<main>
-				<Outlet />
-			</main>
-			<FooterNav />
-		</>
+		<main>
+			<Outlet />
+		</main>
 	);
 }
 
