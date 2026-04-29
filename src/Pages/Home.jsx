@@ -1,13 +1,24 @@
-import { Link } from 'react-router-dom';
-
+import { motion } from 'motion/react';
+import logoIcon from '../assets/logo.png';
 function Home() {
 	return (
-		<section>
-			<h1>Välkommen</h1>
-			<p>Här kan du hitta och boka events.</p>
+		<main className='page home'>
+			<motion.section
+				className='container center home__content'
+				initial={{ opacity: 0, y: 96 }}
+				animate={{ opacity: 1, y: 1 }}
+				transition={{ duration: 0.5 }}>
+				<img src={logoIcon} alt="Where It's @ icon" className='home__icon' />
 
-			<Link to='/events'>Se alla event</Link>
-		</section>
+				<h1 className='page-title home__title'>Where It's @</h1>
+
+				<p className='home__tagline'>Ticketing made easy</p>
+			</motion.section>
+			<div className='home-dots'>
+				<span className='home__dot hhome__dot--active'></span>
+				<span className='home__dot'></span>
+			</div>
+		</main>
 	);
 }
 
