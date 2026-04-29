@@ -21,3 +21,6 @@ Vem vill inte ha lite konfetti när man ska på event och ha roligt, en liten f�
 
 ZUSTAND
 Ett sätt att kunna hantera global states, i det här fallet så är det kundvagnen främst som drar nytta av det.
+
+LUCIDE-REACT
+Nånstans där jag kan hämt hem simpla ikoner för min header och footernavigation.
