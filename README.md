@@ -18,5 +18,6 @@ Tänkte att den här kunde vara bra för att skapa enklare unika Id:n för att f
 
 REACT-CONFETTI
 Vem vill inte ha lite konfetti när man ska på event och ha roligt, en liten förfest innan förfesten börjar ens XD
+
 ZUSTAND
 Ett sätt att kunna hantera global states, i det här fallet så är det kundvagnen främst som drar nytta av det.
