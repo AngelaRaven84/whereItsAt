@@ -166,12 +166,32 @@ img {
 }
 
 .date-box {
+	width: 58px;
+	height: 58px;
 	border: 1px solid var(--text-muted);
 	border-radius: var(--radius-sm);
-	padding: 0.6rem;
-	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+	flex-shrink: 0;
+}
+
+.date-box__day {
+	font-family: var(--font-second);
+	color: var(--text);
+	font-size: 0.9rem;
 	font-weight: 700;
-	font-size: 0.8rem;
+	margin-bottom: 0.25rem;
+}
+
+.date-box__month {
+	font-family: var(--font-second);
+	color: var(--text-muted);
+	font-size: 0.65rem;
+	font-weight: 600;
+	text-transform: uppercase;
 }
 
 /* Quantity picker */
@@ -258,4 +278,50 @@ img {
 
 .home__dot--active {
 	background: var(--text);
+}
+
+/* EVENTS */
+
+.events {
+	padding-top: var(--space-xl);
+	padding-bottom: 6rem;
+}
+
+.events__list {
+	display: flex;
+	flex-direction: column;
+	display: flex;
+	flex-direction: column;
+}
+
+.event-card {
+	grid-template-columns: 60px 1fr;
+}
+
+.event-card__content {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	padding-top: var(--space-lg);
+}
+
+.event-card__where {
+	font-family: var(--font-second);
+	color: var(--text-muted);
+	font-size: 0.8rem;
+	font-style: italic;
+}
+
+.event-card__bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: var(--space-md);
+	margin-top: var(--space-xs);
+	font-size: 0.8rem;
+}
+
+.event-card__time {
+	color: var(--text);
+	font-weight: 600;
 }
