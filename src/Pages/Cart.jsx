@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Confetti from 'react-confetti';
 import useCartStore from '../store/useCartStore';
 
 function Cart() {
-	const navigate = useNavigate();
+	const [isOrdered, setIsOrdered] = useState(false);
 
 	const {
 		cart,
@@ -17,46 +18,77 @@ function Cart() {
 		0,
 	);
 
-	if (cart.length === 0) {
-		return (
-			<main>
-				<h1>Kundvagn</h1>
-				<p>Din kundvagn är tom.</p>
-			</main>
-		);
-	}
+	const handleOrder = () => {
+		setIsOrdered(true);
+		clearCart();
+	};
 
 	return (
-		<main>
-			<h1>Kundvagn</h1>
-			{cart.map((item) => (
-				<article key={item.id}>
-					<h2>{item.name}</h2>
-					<p>Plats: {item.where}</p>
-					<p>Datum: {item.when.date}</p>
-					<p>
-						Tid: {item.when.from} - {item.when.to}
-					</p>
-					<p>Pris: {item.price} kr/st</p>
+		<main className='page cart-page'>
+			{isOrdered && <Confetti />}
 
-					<div>
-						<button onClick={() => decreaseQuantity(item.id)}>-</button>
-						<span>{item.quantity}</span>
-
-						<button onClick={() => increaseQuantity(item.id)}>+</button>
+			<section className='container cart'>
+				{cart.length === 0 && !isOrdered ? (
+					<p className='text-muted cart__empty'>Kundvagnen är tom:</p>
+				) : isOrdered ? (
+					<div className='cart__success'>
+						<h1>Tack för din order!</h1>
+						<p>Dina biljetter är bokade.</p>
 					</div>
+				) : (
+					<>
+						<div className='cart__list'>
+							{cart.map((item) => (
+								<article key={item.id} className='cart-item'>
+									<div className='cart-item__info'>
+										<h2>{item.name}</h2>
+										<p>
+											{item.when?.date} kl {item.when?.from} - {item.when?.to}
+										</p>
+									</div>
 
-					<p>Totalt: {item.price * item.quantity} kr</p>
+									<div className='cart-item__controls'>
+										<p className='cart-item__price'>
+											{item.price * item.quantity} sek
+										</p>
+										<div className='cart-item__quantity'>
+											<button
+												type='button'
+												onClick={() =>
+													item.quantity <= 1
+														? removeFromCart(item.id)
+														: decreaseQuantity(item.id)
+												}>
+												{' '}
+												-{' '}
+											</button>
+											<span>{item.quantity}</span>
+											<button
+												type='button'
+												onClick={() => increaseQuantity(item.id)}>
+												{' '}
+												+{' '}
+											</button>
+										</div>
+									</div>
+								</article>
+							))}
+						</div>
 
-					<button onClick={() => removeFromCart(item.id)}>Ta bort</button>
-				</article>
-			))}
+						<div className='cart__summary'>
+							<p>Totalt värde på order</p>
+							<strong>{totalPrice} sek</strong>
+						</div>
 
-			<h2>Summa: {totalPrice} kr</h2>
-
-			<button onClick={() => navigate('/order')}>Skicka order</button>
-
-			<button onClick={clearCart}>Töm kundvagn</button>
+						<button
+							type='button'
+							className='btn cart__btn'
+							onClick={handleOrder}>
+							Skicka order
+						</button>
+					</>
+				)}
+			</section>
 		</main>
 	);
 }
