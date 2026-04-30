@@ -82,7 +82,7 @@ export const Header = () => {
 
 								<button
 									type='button'
-									className='eader__icon'
+									className='header__icon'
 									onClick={() => setIsCartOpen(false)}
 									aria-label='Stäng kundvagn'>
 									<X size={24} />
@@ -106,7 +106,7 @@ export const Header = () => {
 
 							<button
 								type='button'
-								className='btn.cart-drawer__btn'
+								className='btn cart-drawer__btn'
 								onClick={() => {
 									setIsCartOpen(false);
 									navigate('/cart');
