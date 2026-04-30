@@ -8,7 +8,11 @@ import FooterNav from '../components/FooterNav/FooterNav';
 
 function Onboarding() {
 	const [activeSlide, setActiveSlide] = useState(0);
-	const showNavigation = activeSlide === 1;
+	const [swiperInstance, setSwiperInstance] = useState(null);
+	const showNavigation = activeSlide !== 0;
+	const handleNavigate = (slideIndex) => {
+		swiperInstance?.slideTo(slideIndex);
+	};
 
 	return (
 		<main className='onboarding'>
@@ -16,6 +20,7 @@ function Onboarding() {
 
 			<Swiper
 				slidesPerView={1}
+				onSwiper={setSwiperInstance}
 				onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}>
 				<SwiperSlide>
 					<Home />
@@ -26,7 +31,9 @@ function Onboarding() {
 				</SwiperSlide>
 			</Swiper>
 
-			{showNavigation && <FooterNav />}
+			{showNavigation && (
+				<FooterNav activeSlide={activeSlide} onNavigate={handleNavigate} />
+			)}
 		</main>
 	);
 }

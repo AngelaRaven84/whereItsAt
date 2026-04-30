@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { motion } from 'motion/react';
 import { getEvents, getEventsById } from '../api/eventsApi';
 import useCartStore from '../store/useCartStore';
 
@@ -37,18 +38,48 @@ function EventDetails() {
 	if (error) return <p>{error}</p>;
 
 	return (
-		<article className='eventCard'>
-			<h2>{event.name}</h2>
-			<p>{event.where}</p>
-			<p>
-				{event.when.date} · {event.when.from}-{event.when.to}
-			</p>
-			<p>{event.price} kr</p>
+		<motion.main
+			className='page details-page'
+			initial={{ opacity: 0, y: 14 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.35 }}>
+			<section className='container detail'>
+				<div className='detail__hero'>
+					<p className='detail__eyebrow'>
+						You are about to score some tickets to
+					</p>
+					<h1 className='detail__title'>{event.name}</h1>
+					<p className='detail__date'>
+						{event.when?.date} kl {event.when?.from} - {event.when?.to}
+					</p>
+					<p className='detail__location'>@ {event.where}</p>
+				</div>
 
-			<button onClick={() => addToCart({ ...event, quantity })}>
-				Köp {quantity} biljett(er)
-			</button>
-		</article>
+				<div className='ticket-box'>
+					<p className='ticket-box__price'>{event.price * quantity} sek</p>
+
+					<div className='ticket-box__quantity'>
+						<button
+							type='button'
+							onClick={() => setQuantity(quantity - 1)}
+							disabled={quantity <= 1}>
+							-
+						</button>
+						<span>{quantity}</span>
+						<button type='button' onClick={() => setQuantity(quantity + 1)}>
+							+
+						</button>
+					</div>
+				</div>
+
+				<button
+					type='button'
+					className='btn detail__btn'
+					onClick={() => addToCart(event)}>
+					Lägg i kundvagn
+				</button>
+			</section>
+		</motion.main>
 	);
 }
 

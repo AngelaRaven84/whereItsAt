@@ -325,3 +325,235 @@ img {
 	color: var(--text);
 	font-weight: 600;
 }
+
+/* EVENTDETAILS */
+
+.detail-page {
+	padding-bottom: 7rem;
+}
+
+.detail {
+	min-height: calc(100vh - 150px);
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+	gap: var(--space-xl);
+}
+
+.detail__hero {
+	text-align: center;
+}
+
+.detail__eyebrow {
+	font-family: var(--font-second);
+	color: var(--text-muted);
+	font-size: 1rem;
+	font-style: italic;
+	margin-bottom: var(--space-md);
+}
+
+.detail__title {
+	font-family: var(--font-main);
+	color: var(--primary);
+	font-size: 2.3rem;
+	line-height: 1;
+	margin-bottom: var(--space-md);
+}
+
+.detail__date {
+	font-family: var(--font-second);
+	color: var(--accent);
+	font-size: 0.95rem;
+	font-weight: 700;
+	margin-bottom: var(--space-sm);
+}
+
+.detail__location {
+	font-family: var(--font-second);
+	color: var(--text-muted);
+	font-size: 0.9rem;
+	font-style: italic;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-xs);
+}
+
+.detail__location svg {
+	color: var(--text-muted);
+}
+
+.ticket-box {
+	border: 1px solid var(--primary);
+	border-radius: var(--radius-sm);
+	overflow: hidden;
+}
+
+.ticket-box__price {
+	padding: var(--space-lg);
+	text-align: center;
+	color: var(--accent);
+	font-family: var(--font-second);
+	font-size: 2rem;
+	border-bottom: 1px solid var(--primary);
+}
+
+.ticket-box__quantity {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ticket-box__quantity button,
+.ticket-box__quantity span {
+	min-height: 52px;
+	background: transparent;
+	color: var(--text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-second);
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+
+.ticket-box__quantity button {
+	border-right: 1px solid var(--primary);
+}
+
+.ticket-box__quantity span {
+	border-right: 1px solid var(--primary);
+}
+
+.ticket-box__quantity button:disabled {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+.detail__btn {
+	margin-top: auto;
+}
+
+/* CART */
+
+.cart-page {
+	padding-bottom: 7rem;
+}
+
+.cart {
+	min-height: calc(100vh - 150px);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-lg);
+}
+
+.cart__list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
+}
+
+.cart-item {
+	border: 1px solid var(--primary);
+	border-radius: var(--radius-sm);
+	overflow: hidden;
+}
+
+.cart-item__info {
+	padding: var(--space-md);
+	border-bottom: 1px solid var(--primary);
+}
+
+.cart-item__info h2 {
+	font-family: var(--font-main);
+	color: var(--primary);
+	font-size: 1.5rem;
+	font-style: italic;
+	margin-bottom: var(--space-xs);
+}
+
+.cart-item__info p {
+	font-family: var(--font-second);
+	color: var(--accent);
+	font-size: 0.85rem;
+	font-weight: 700;
+}
+
+.cart-item__controls {
+	display: grid;
+	grid-template-columns: 1fr 160px;
+	align-items: center;
+}
+
+.cart-item__price {
+	padding: var(--space-md);
+	color: var(--accent);
+	font-family: var(--font-second);
+	font-weight: 700;
+	font-size: 1.2rem;
+}
+
+.cart-item__quantity {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	border-left: 1px solid var(--primary);
+}
+
+.cart-item__quantity button,
+.cart-item__quantity span {
+	height: 52px;
+	background: transparent;
+	color: vvar(--text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-second);
+	font-size: 1.1rem;
+	font-weight: 700;
+	border-right: 1px solid var(--primary);
+}
+
+.cart-item__quantity button:last-child {
+	border-right: none;
+}
+
+.cart__summary {
+	margin-top: auto;
+	padding-top: var(--space-lg);
+	font-family: var(--font-second);
+	text-align: center;
+}
+
+.cart__summary p {
+	color: var(--text-muted);
+	font-size: 0.9rem;
+	margin-bottom: var(--space-xs);
+}
+
+.cart__summary strong {
+	color: var(--accent);
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.cart__btn {
+	margin-top: var(--space-md);
+}
+
+.cart__empty,
+.cart__success {
+	margin: auto 0;
+	text-align: center;
+}
+
+.cart__success h1 {
+	font-family: var(--font-main);
+	color: var(--primary);
+	font-size: 2rem;
+	font-style: italic;
+	margin-bottom: var(--space-sm);
+}
+
+.cart__success p {
+	font-family: var(--font-second);
+	color: var(--text-muted);
+}
