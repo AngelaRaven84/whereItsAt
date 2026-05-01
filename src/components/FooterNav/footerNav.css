@@ -9,8 +9,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background: var(--bg-light);
-	border: 1px solid var(--line);
 	border-radius: 999px;
 }
 
@@ -24,7 +22,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: var(--text-muted);
+	color: var(--primary);
 	position: relative;
 	transition:
 		background 0.2s ease,
@@ -33,5 +31,5 @@
 }
 
 .footer-nav__link:hover {
-	color: var(--text);
+	color: var(--accent);
 }
