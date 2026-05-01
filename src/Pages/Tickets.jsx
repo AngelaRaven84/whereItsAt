@@ -1,12 +1,25 @@
 import useCartStore from '../store/useCartStore';
+import { useEffect } from 'react';
+import Confetti from 'react-confetti';
 
 const Tickets = () => {
+	const showConfetti = useCartStore((state) => state.showConfetti);
+	const stopConfetti = useCartStore((state) => state.stopConfetti);
 	const purchasedTickets = useCartStore((state) => state.purchasedTickets);
+	console.log(purchasedTickets);
+
+	useEffect(() => {
+		if (showConfetti) {
+			const timer = setTimeout(() => {
+				stopConfetti();
+			}, 4500);
+			return () => clearTimeout(timer);
+		}
+	}, [showConfetti, stopConfetti]);
 
 	if (purchasedTickets.length === 0) {
 		return (
 			<main>
-				<h1>Dina biljetter</h1>
 				<p>Du har inga köpta biljetter ännu.</p>
 			</main>
 		);
@@ -14,10 +27,9 @@ const Tickets = () => {
 
 	return (
 		<main>
-			<h1>Dina biljetter</h1>
-
+			{showConfetti && <Confetti />}
 			{purchasedTickets.map((ticket) => (
-				<article key={ticket.tickedId}>
+				<article key={ticket.ticketId}>
 					<h2>{ticket.name}</h2>
 
 					<p>Plats: {ticket.where}</p>

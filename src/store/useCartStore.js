@@ -3,6 +3,10 @@ import { create } from 'zustand';
 const useCartStore = create((set, get) => ({
 	cart: [],
 	purchasedTickets: [],
+	showConfetti: false,
+
+	startConfetti: () => set({ showConfetti: true }),
+	stopConfetti: () => set({ showConfetti: false }),
 
 	addToCart: (event) => {
 		const cart = get().cart;
@@ -19,7 +23,7 @@ const useCartStore = create((set, get) => ({
 			});
 		} else {
 			set({
-				cart: [...cart, { ...event, quantity: 1 }],
+				cart: [...cart, { ...event, quantity: quantityToAdd }],
 			});
 		}
 	},
@@ -53,16 +57,21 @@ const useCartStore = create((set, get) => ({
 	},
 
 	checkout: () => {
+		const cart = get().cart;
+		console.log('cart vid checkout:', cart);
 		const orderNumber = crypto.randomUUID();
 
-		const tickets = get().cart.map((item) => ({
-			...item,
-			ticketId: crypto.randomUUID(),
-			orderNumber,
-		}));
+		const tickets = get().cart.flatMap((item) =>
+			Array.from({ length: item.quantity }, () => ({
+				...item,
+				quantity: 1,
+				ticketId: crypto.randomUUID(),
+				orderNumber,
+			})),
+		);
 
 		set({
-			purchasedTickets: tickets,
+			purchasedTickets: [...get().purchasedTickets, ...tickets],
 			cart: [],
 		});
 	},

@@ -1,40 +1,22 @@
-import { useState } from 'react';
-import Confetti from 'react-confetti';
+import { useNavigate } from 'react-router-dom';
 import useCartStore from '../store/useCartStore';
 
 function Cart() {
-	const [isOrdered, setIsOrdered] = useState(false);
+	const navigate = useNavigate();
 
-	const {
-		cart,
-		increaseQuantity,
-		decreaseQuantity,
-		removeFromCart,
-		clearCart,
-	} = useCartStore();
+	const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
+		useCartStore();
 
 	const totalPrice = cart.reduce(
 		(total, item) => total + item.price * item.quantity,
 		0,
 	);
 
-	const handleOrder = () => {
-		setIsOrdered(true);
-		clearCart();
-	};
-
 	return (
 		<main className='page cart-page'>
-			{isOrdered && <Confetti />}
-
 			<section className='container cart'>
-				{cart.length === 0 && !isOrdered ? (
-					<p className='text-muted cart__empty'>Kundvagnen är tom:</p>
-				) : isOrdered ? (
-					<div className='cart__success'>
-						<h1>Tack för din order!</h1>
-						<p>Dina biljetter är bokade.</p>
-					</div>
+				{cart.length === 0 ? (
+					<p className='text-muted cart__empty'>Kundvagnen är tom.</p>
 				) : (
 					<>
 						<div className='cart__list'>
@@ -83,8 +65,8 @@ function Cart() {
 						<button
 							type='button'
 							className='btn cart__btn'
-							onClick={handleOrder}>
-							Skicka order
+							onClick={() => navigate('/order')}>
+							Gå till order
 						</button>
 					</>
 				)}
