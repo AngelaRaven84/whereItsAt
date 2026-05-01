@@ -58,7 +58,6 @@ const useCartStore = create((set, get) => ({
 
 	checkout: () => {
 		const cart = get().cart;
-		console.log('cart vid checkout:', cart);
 		const orderNumber = crypto.randomUUID();
 
 		const tickets = get().cart.flatMap((item) =>
