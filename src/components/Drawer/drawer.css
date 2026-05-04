@@ -1,0 +1,129 @@
+.drawer-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 200;
+	background: rgba(0, 0, 0, 0.45);
+	display: flex;
+	justify-content: flex-end;
+}
+
+.cart-drawer {
+	width: min(85%, 360px);
+	height: 100%;
+	background: var(--bg);
+	border-left: 1px solid var(--primary);
+	padding: var(--space-lg);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-lg);
+	box-shadow: -8px 0 24px rgba(0, 0, 0, 0.35);
+}
+
+.cart-drawer__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.cart-drawer__header h2 {
+	font-family: var(--font-main);
+	color: var(--primary);
+	font-size: 1.6rem;
+	font-style: italic;
+}
+
+.cart-drawer__close {
+	background: transparent;
+	color: var(--text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.cart-drawer__empty {
+	color: var(--text-muted);
+	font-family: var(--font-second);
+}
+
+.cart-drawer__list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
+	flex: 1;
+}
+
+.cart-drawer__item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: var(--line);
+	padding-bottom: var(--space-md);
+}
+
+.cart-drawer__info h3 {
+	color: var(--primary);
+	font-family: var(--font-second);
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.cart-drawer__info p {
+	color: var(--accent);
+	font-family: var(--font-second);
+	font-size: 0.9rem;
+	font-weight: 700;
+}
+
+.drawer-quantity {
+	display: grid;
+	grid-template-columns: 36px 36px 36px;
+	border: 1px solid var(--primary);
+	border-radius: var(--radius-md);
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+.drawer-quantity button,
+.drawer-quantity span {
+	min-height: 36px;
+	background: transparent;
+	color: var(--text);
+	font-family: var(--font-second);
+	font-size: 1rem;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.drawer-quantity span {
+	border-left: 1px solid var(--primary);
+	border-right: 1px solid var(--primary);
+}
+
+.drawer-quantity button:hover,
+.drawer-quantity button:focus-visible {
+	background: rgba(245, 107, 154, 0.18);
+	outline: none;
+}
+
+.cart-drawer__summary {
+	margin: auto;
+	padding-top: var(--space-md);
+	margin-bottom: var(--space-md);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: var(--font-second);
+	color: var(--text);
+	border-top: 1px solid var(--primary);
+}
+
+.cart-drawer__summary strong {
+	color: var(--accent);
+	font-size: 1.2rem;
+}
+
+.cart-drawer__btn {
+	margin-top: var(--space-sm);
+}
