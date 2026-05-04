@@ -16,8 +16,7 @@ function Onboarding() {
 
 	return (
 		<main className='onboarding'>
-			{showNavigation && <Header />}
-
+			{showNavigation && <Header activeSlide={activeSlide} />}
 			<Swiper
 				slidesPerView={1}
 				onSwiper={setSwiperInstance}
@@ -30,7 +29,6 @@ function Onboarding() {
 					<Events />
 				</SwiperSlide>
 			</Swiper>
-
 			{showNavigation && (
 				<FooterNav activeSlide={activeSlide} onNavigate={handleNavigate} />
 			)}

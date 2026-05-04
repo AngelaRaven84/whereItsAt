@@ -1,7 +1,21 @@
-import React from 'react';
+import './button.css';
 
-const Button = () => {
-	return <div>Button</div>;
-};
+function Button({
+	children,
+	onClick,
+	type = 'button',
+	className = '',
+	disabled = false,
+}) {
+	return (
+		<button
+			type={type}
+			className={`btn ${className}`}
+			onClick={onClick}
+			disabled={disabled}>
+			{children}
+		</button>
+	);
+}
 
 export default Button;

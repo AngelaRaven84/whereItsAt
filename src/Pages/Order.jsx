@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import useCartStore from '../store/useCartStore';
 import useCartTotals from '../hooks/useCartTotals';
+import Button from '../components/Button/Button';
 
 function Order() {
 	const navigate = useNavigate();
@@ -53,12 +54,7 @@ function Order() {
 					<strong>{totalPrice} sek</strong>
 				</div>
 
-				<button
-					type='button'
-					className='btn order__btn'
-					onClick={handleCheckout}>
-					Bekräfta köp
-				</button>
+				<Button onClick={handleCheckout}>Bekräfta köp</Button>
 			</section>
 		</main>
 	);

@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import useCartStore from '../../store/useCartStore';
 import useCartTotals from '../../hooks/useCartTotals';
+import Button from '../Button/Button';
 import './drawer.css';
 
 function Drawer({ closeDrawer, isClosing }) {
@@ -84,15 +85,13 @@ function Drawer({ closeDrawer, isClosing }) {
 					</div>
 				)}
 
-				<button
-					type='button'
-					className='btn cart-drawer__btn'
+				<Button
 					onClick={() => {
 						closeDrawer();
 						navigate('/cart');
 					}}>
 					Gå till kundvagn
-				</button>
+				</Button>
 			</motion.aside>
 		</motion.div>
 	);

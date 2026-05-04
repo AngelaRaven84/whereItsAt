@@ -6,7 +6,7 @@ import useCartTotals from '../../hooks/useCartTotals';
 import Drawer from '../Drawer/Drawer';
 import './header.css';
 
-export const Header = () => {
+export const Header = ({ activeSlide }) => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 	const [isClosing, setIsClosing] = useState(false);
 	const navigate = useNavigate();
@@ -24,22 +24,41 @@ export const Header = () => {
 	};
 
 	const getTitle = () => {
-		if (location.pathname.includes('cart')) return 'Cart';
-		if (location.pathname.includes('events')) return 'Events';
-		return "Where It's @";
+		if (location.pathname.startsWith('/events/')) return 'Eventdetaljer';
+
+		switch (location.pathname) {
+			case '/cart':
+				return 'Cart';
+			case '/events':
+				return 'Events';
+			case '/order':
+				return 'Order';
+			case '/tickets':
+				return 'Biljetter';
+			case '/':
+				return activeSlide === 1 ? 'Events' : "Where It's @";
+			default:
+				return "Where It's @";
+		}
 	};
 
-	const canGoBack = location.pathname !== '/';
+	const canGoBack = () => {
+		if (location.pathname.startsWith('/events')) {
+			navigate('/events');
+			return;
+		}
+		navigate(-1);
+	};
 
 	return (
 		<>
 			<header className='header'>
 				<div className='header__side'>
-					{canGoBack && (
+					{location.pathname !== '/' && (
 						<button
 							type='button'
 							className='header__icon header__icon--visible'
-							onClick={() => navigate(-1)}
+							onClick={canGoBack}
 							aria-label='Gå tillbaka'>
 							<ArrowLeft size={24} />
 						</button>

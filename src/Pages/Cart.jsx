@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import useCartStore from '../store/useCartStore';
 import useCartTotals from '../hooks/useCartTotals';
+import Button from '../components/Button/Button';
 
 function Cart() {
 	const navigate = useNavigate();
@@ -58,12 +59,7 @@ function Cart() {
 							<strong>{totalPrice} sek</strong>
 						</div>
 
-						<button
-							type='button'
-							className='btn cart__btn'
-							onClick={() => navigate('/order')}>
-							Gå till order
-						</button>
+						<Button onClick={() => navigate('/order')}>Gå till order</Button>
 					</>
 				)}
 			</section>
