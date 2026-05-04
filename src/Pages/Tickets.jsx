@@ -105,7 +105,6 @@ const Tickets = () => {
 						);
 					})}
 				</div>
-				<p className='tickets__hint'>Svep för att bläddra mellan biljetterna</p>
 			</section>
 		</main>
 	);

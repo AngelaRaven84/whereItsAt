@@ -1,33 +1,32 @@
 import { useState } from 'react';
-import { ArrowLeft, ShoppingCart, X } from 'lucide-react';
+import { ArrowLeft, ShoppingCart } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
 import useCartStore from '../../store/useCartStore';
 import useCartTotals from '../../hooks/useCartTotals';
+import Drawer from '../Drawer/Drawer';
 import './header.css';
 
 export const Header = () => {
-	const [isCartOpen, setIsCartOpen] = useState(false);
+	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 	const [isClosing, setIsClosing] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
 	const cart = useCartStore((state) => state.cart);
-	const { totalItems, totalPrice } = useCartTotals(cart);
-	// const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+	const { totalItems } = useCartTotals(cart);
+
+	const closeDrawer = () => {
+		setIsClosing(true);
+
+		setTimeout(() => {
+			setIsDrawerOpen(false);
+			setIsClosing(false);
+		}, 250);
+	};
 
 	const getTitle = () => {
 		if (location.pathname.includes('cart')) return 'Cart';
 		if (location.pathname.includes('events')) return 'Events';
 		return "Where It's @";
-	};
-
-	const closeCart = () => {
-		setIsClosing(true);
-
-		setTimeout(() => {
-			setIsCartOpen(false);
-			setIsClosing(false);
-		}, 250);
 	};
 
 	const canGoBack = location.pathname !== '/';
@@ -53,7 +52,7 @@ export const Header = () => {
 					<button
 						type='button'
 						className='header__icon header__cart'
-						onClick={() => setIsCartOpen(true)}
+						onClick={() => setIsDrawerOpen(true)}
 						aria-label='Öppna kundvagn'>
 						<ShoppingCart size={24} />
 						{totalItems > 0 && (
@@ -63,68 +62,9 @@ export const Header = () => {
 				</div>
 			</header>
 
-			<AnimatePresence>
-				{isCartOpen && (
-					<motion.div
-						className='drawer-overlay'
-						onClick={() => setIsCartOpen(false)}
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						transition={{ duration: 0.25 }}>
-						<motion.aside
-							className='cart-drawer'
-							onClick={(e) => e.stopPropagation()}
-							initial={{ x: '100%' }}
-							animate={{ x: 0 }}
-							exit={{ x: '100%' }}
-							transition={{ duration: 0.25, ease: 'easeOut ' }}>
-							<div className='cart-drawer__header'>
-								<h2>Din kundvagn</h2>
-
-								<button
-									type='button'
-									className='header__icon'
-									onClick={() => setIsCartOpen(false)}
-									aria-label='Stäng kundvagn'>
-									<X size={24} />
-								</button>
-							</div>
-
-							{cart.length === 0 ? (
-								<p className='text-muted'>Kundvagnen är tom.</p>
-							) : (
-								<div className='cart-drawer__list'>
-									{cart.map((item) => (
-										<article key={item.id} className='cart-drawer__item'>
-											<h3>{item.name}</h3>
-											<p>
-												{item.quantity} st · {item.price} sek/st
-											</p>
-										</article>
-									))}
-								</div>
-							)}
-							{cart.length > 0 && (
-								<div className='cart-drawer__summary'>
-									<span>Totalt värde</span>
-									<strong>{totalPrice} sek</strong>
-								</div>
-							)}
-
-							<button
-								type='button'
-								className='btn cart-drawer__btn'
-								onClick={() => {
-									setIsCartOpen(false);
-									navigate('/cart');
-								}}>
-								Gå till kundvagn
-							</button>
-						</motion.aside>
-					</motion.div>
-				)}
-			</AnimatePresence>
+			{isDrawerOpen && (
+				<Drawer closeDrawer={closeDrawer} isClosing={isClosing} />
+			)}
 		</>
 	);
 };
