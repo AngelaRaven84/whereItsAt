@@ -1,16 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import useCartStore from '../store/useCartStore';
+import useCartTotals from '../hooks/useCartTotals';
 
 function Order() {
 	const navigate = useNavigate();
 	const startConfetti = useCartStore((state) => state.startConfetti);
 	const cart = useCartStore((state) => state.cart);
 	const checkout = useCartStore((state) => state.checkout);
-
-	const totalPrice = cart.reduce(
-		(total, item) => total + item.price * item.quantity,
-		0,
-	);
+	const { totalItems, totalPrice } = useCartTotals(cart);
 
 	const handleCheckout = () => {
 		checkout();
@@ -45,8 +42,8 @@ function Order() {
 								<p>{item.where}</p>
 							</div>
 							<div className='order-item__meta'>
-								<span>{item.quantity} st</span>
-								<strong>{item.price * item.quantity} sek</strong>
+								<span>{totalItems} st</span>
+								<strong>{totalPrice} sek</strong>
 							</div>
 						</article>
 					))}

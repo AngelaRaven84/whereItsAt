@@ -3,6 +3,7 @@ import { ArrowLeft, ShoppingCart, X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import useCartStore from '../../store/useCartStore';
+import useCartTotals from '../../hooks/useCartTotals';
 import './header.css';
 
 export const Header = () => {
@@ -11,7 +12,8 @@ export const Header = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const cart = useCartStore((state) => state.cart);
-	const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+	const { totalItems, totalPrice } = useCartTotals(cart);
+	// const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
 	const getTitle = () => {
 		if (location.pathname.includes('cart')) return 'Cart';
@@ -54,8 +56,8 @@ export const Header = () => {
 						onClick={() => setIsCartOpen(true)}
 						aria-label='Öppna kundvagn'>
 						<ShoppingCart size={24} />
-						{cartCount > 0 && (
-							<span className='header__badge'>{cartCount}</span>
+						{totalItems > 0 && (
+							<span className='header__badge'>{totalItems}</span>
 						)}
 					</button>
 				</div>
@@ -97,10 +99,16 @@ export const Header = () => {
 										<article key={item.id} className='cart-drawer__item'>
 											<h3>{item.name}</h3>
 											<p>
-												{item.quantity} st · {item.price} sek
+												{item.quantity} st · {item.price} sek/st
 											</p>
 										</article>
 									))}
+								</div>
+							)}
+							{cart.length > 0 && (
+								<div className='cart-drawer__summary'>
+									<span>Totalt värde</span>
+									<strong>{totalPrice} sek</strong>
 								</div>
 							)}
 
