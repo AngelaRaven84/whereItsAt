@@ -29,17 +29,23 @@ export const Header = () => {
 		return "Where It's @";
 	};
 
-	const canGoBack = location.pathname !== '/';
+	const canGoBack = () => {
+		if (location.pathname.startsWith('/events')) {
+			navigate('/events');
+			return;
+		}
+		navigate(-1);
+	};
 
 	return (
 		<>
 			<header className='header'>
 				<div className='header__side'>
-					{canGoBack && (
+					{location.pathname !== '/' && (
 						<button
 							type='button'
 							className='header__icon header__icon--visible'
-							onClick={() => navigate(-1)}
+							onClick={canGoBack}
 							aria-label='Gå tillbaka'>
 							<ArrowLeft size={24} />
 						</button>
