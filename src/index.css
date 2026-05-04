@@ -615,7 +615,7 @@ img {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: var(--space-md var(--space-lg));
+	padding: var(--space-md) var(--space-lg);
 	background: rgba(0, 0, 0, 0.16);
 	font-family: var(--font-second);
 }
@@ -628,7 +628,7 @@ img {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-top: car(--space-lg);
+	padding-top: var(--space-lg);
 	border-top: 1px solid rgba(245, 107, 154, 0.45);
 	font-family: var(--font-second);
 }

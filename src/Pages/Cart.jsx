@@ -1,16 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import useCartStore from '../store/useCartStore';
+import useCartTotals from '../hooks/useCartTotals';
 
 function Cart() {
 	const navigate = useNavigate();
-
 	const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
 		useCartStore();
-
-	const totalPrice = cart.reduce(
-		(total, item) => total + item.price * item.quantity,
-		0,
-	);
+	const { totalItems, totalPrice } = useCartTotals(cart);
 
 	return (
 		<main className='page cart-page'>

@@ -1,41 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { getEvents, getEventsById } from '../api/eventsApi';
+import useEventDetails from '../hooks/useEventDetails';
+import useQuantity from '../hooks/useQuantity';
 import useCartStore from '../store/useCartStore';
 
 function EventDetails() {
-	const { id } = useParams();
 	const addToCart = useCartStore((state) => state.addToCart);
+	const { event, isLoading, error } = useEventDetails();
+	const { quantity, increase, decrease } = useQuantity();
 
-	const [event, setEvent] = useState(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
-	const [quantity, setQuantity] = useState(1);
-
-	useEffect(() => {
-		async function fetchEvent() {
-			try {
-				const data = await getEventsById(id);
-
-				if (!data) {
-					setError('Eventet hittades inte.');
-					return;
-				}
-
-				setEvent(data);
-			} catch (err) {
-				setError('Kunde inte hämta eventet');
-			} finally {
-				setLoading(false);
-			}
-		}
-
-		fetchEvent();
-	}, [id]);
-
-	if (loading) return <p>Laddar event...</p>;
+	if (isLoading) return <p>Laddar event...</p>;
 	if (error) return <p>{error}</p>;
+	if (!event) return <p>Eventet hittades inte.</p>;
 
 	return (
 		<motion.main
@@ -59,14 +34,11 @@ function EventDetails() {
 					<p className='ticket-box__price'>{event.price * quantity} sek</p>
 
 					<div className='ticket-box__quantity'>
-						<button
-							type='button'
-							onClick={() => setQuantity(quantity - 1)}
-							disabled={quantity <= 1}>
+						<button type='button' onClick={decrease} disabled={quantity <= 1}>
 							-
 						</button>
 						<span>{quantity}</span>
-						<button type='button' onClick={() => setQuantity(quantity + 1)}>
+						<button type='button' onClick={increase}>
 							+
 						</button>
 					</div>
@@ -75,7 +47,7 @@ function EventDetails() {
 				<button
 					type='button'
 					className='btn detail__btn'
-					onClick={() => addToCart(event)}>
+					onClick={() => addToCart({ ...event, quantity })}>
 					Lägg i kundvagn
 				</button>
 			</section>
