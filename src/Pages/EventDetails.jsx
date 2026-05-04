@@ -2,11 +2,16 @@ import { motion } from 'motion/react';
 import useEventDetails from '../hooks/useEventDetails';
 import useQuantity from '../hooks/useQuantity';
 import useCartStore from '../store/useCartStore';
+import Button from '../components/Button/Button';
 
 function EventDetails() {
 	const addToCart = useCartStore((state) => state.addToCart);
 	const { event, isLoading, error } = useEventDetails();
 	const { quantity, increase, decrease } = useQuantity();
+
+	const handleAddToCart = () => {
+		addToCart({ ...event, quantity });
+	};
 
 	if (isLoading) return <p>Laddar event...</p>;
 	if (error) return <p>{error}</p>;
@@ -44,12 +49,7 @@ function EventDetails() {
 					</div>
 				</div>
 
-				<button
-					type='button'
-					className='btn detail__btn'
-					onClick={() => addToCart({ ...event, quantity })}>
-					Lägg i kundvagn
-				</button>
+				<Button onClick={handleAddToCart}>Lägg i kundvagn</Button>
 			</section>
 		</motion.main>
 	);

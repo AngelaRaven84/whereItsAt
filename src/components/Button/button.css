@@ -1,0 +1,33 @@
+.btn {
+	width: 100%;
+	padding: var(--space-md);
+	border-radius: var(--radius-sm);
+	background: var(--accent);
+	color: var(--text);
+	font-family: var(--font-second);
+	font-weight: 700;
+	font-family: 1rem;
+	cursor: pointer;
+	transition:
+		transform 0.2s ease,
+		opacity 0.2s ease;
+}
+
+.btn:hover {
+	transform: translateY(-2px);
+	opacity: 0.95;
+}
+
+.btn:active {
+	transform: translateY(0);
+}
+
+.btn:focus-visible {
+	outline: 3px solid var(--primary);
+	outline-offset: 3px;
+}
+
+.btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
