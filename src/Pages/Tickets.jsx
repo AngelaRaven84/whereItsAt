@@ -104,7 +104,7 @@ const Tickets = () => {
 									</div>
 								</section>
 								<section className='ticket__code'>
-									<p>{ticket.ticketId.slice(0, 5).toUpperCase()}</p>
+									<h3>{ticket.ticketId.slice(0, 5).toUpperCase()}</h3>
 									<span>#{ticket.ticketId.slice(0, 5).toUpperCase()}</span>
 								</section>
 							</motion.article>

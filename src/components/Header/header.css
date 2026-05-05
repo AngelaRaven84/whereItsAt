@@ -61,10 +61,10 @@
 	height: 18px;
 	padding: 0 5px;
 	border-radius: 50%;
-	background: var(--accent);
+	background: var(--button);
 	color: var(--text);
 	font-family: var(--font-second);
-	font-size: 0.65rem;
+	font-size: 0.8rem;
 	font-weight: 700;
 	display: flex;
 	align-items: center;

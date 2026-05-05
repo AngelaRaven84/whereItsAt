@@ -16,15 +16,20 @@ function Events() {
 
 	return (
 		<main className='page events'>
-			<label htmlFor='event-search' className='events-search'>
+			<label htmlFor='event-search' className='sr-only'>
+				Sök event
+			</label>
+			<div className='input-wrapper'>
 				<input
+					id='event-search'
 					type='search'
 					placeholder='Sök event'
 					value={searchTerm}
 					onChange={(e) => setSearchTerm(e.target.value)}
 					className='input'
 				/>
-			</label>
+			</div>
+
 			<section className='container events__content'>
 				<div className='events__list'>
 					{filteredEvents.length === 0 ? (

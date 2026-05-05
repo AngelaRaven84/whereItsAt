@@ -36,7 +36,7 @@ function EventDetails() {
 				</div>
 
 				<div className='ticket-box'>
-					<p className='ticket-box__price'>{event.price * quantity} sek</p>
+					<h2 className='ticket-box__price'>{event.price * quantity} sek</h2>
 
 					<div className='ticket-box__quantity'>
 						<Button

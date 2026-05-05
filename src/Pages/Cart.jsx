@@ -27,9 +27,9 @@ function Cart() {
 									</div>
 
 									<div className='cart-item__controls'>
-										<p className='cart-item__price'>
+										<h3 className='cart-item__price'>
 											{item.price * item.quantity} sek
-										</p>
+										</h3>
 										<div className='cart-item__quantity'>
 											<Button
 												variant='quantity'
