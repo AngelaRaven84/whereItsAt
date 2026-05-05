@@ -40,16 +40,19 @@ const Tickets = () => {
 		<main className='page tickets-page'>
 			{showConfetti && <Confetti />}
 			<section className='container tickets'>
-				<div className='tickets__stack'>
+				<div className='tickets__stack' role='list' aria-label='Dina biljetter'>
 					{sortedTickets.map((ticket, index) => {
 						const isActive = ticket.ticketId === activeTicket;
 
 						return (
-							<motion.article
+							<motion.button
 								key={ticket.ticketId}
+								type='button'
+								aria-label={`Visa biljett ${index + 1}: ${ticket.name}`}
+								aria-pressed={isActive}
 								className={`ticket ${isActive ? 'ticket--active' : ''}`}
 								style={{
-									zIndex: purchasedTickets.length - index,
+									zIndex: sortedTickets.length - index,
 								}}
 								initial={false}
 								animate={{
@@ -69,7 +72,22 @@ const Tickets = () => {
 									stiffness: 260,
 									damping: 24,
 								}}
-								onClick={() => setActiveTicketId(ticket.ticketId)}>
+								onClick={() => setActiveTicketId(ticket.ticketId)}
+								onKeyDown={(e) => {
+									if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+										e.preventDefault();
+										const nextTicket =
+											sortedTickets[index + 1] ?? sortedTickets[0];
+										setActiveTicketId(nextTicket.ticketId);
+									}
+									if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+										e.preventDefault();
+										const previousTicket =
+											sortedTickets[index - 1] ??
+											sortedTickets[sortedTickets.length - 1];
+										setActiveTicketId(previousTicket.ticketId);
+									}
+								}}>
 								<section className='ticket__section ticket__what'>
 									<span className='ticket__label'>What</span>
 									<h2>{ticket.name}</h2>
@@ -107,7 +125,7 @@ const Tickets = () => {
 									<h3>{ticket.ticketId.slice(0, 5).toUpperCase()}</h3>
 									<span>#{ticket.ticketId.slice(0, 5).toUpperCase()}</span>
 								</section>
-							</motion.article>
+							</motion.button>
 						);
 					})}
 				</div>
