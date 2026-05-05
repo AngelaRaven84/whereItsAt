@@ -1,7 +1,8 @@
-import useCartStore from '../store/useCartStore';
+import useCartStore from '../../store/useCartStore';
 import { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
 import { motion } from 'motion/react';
+import './tickets.css';
 
 const Tickets = () => {
 	const showConfetti = useCartStore((state) => state.showConfetti);

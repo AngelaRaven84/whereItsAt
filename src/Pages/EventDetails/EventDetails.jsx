@@ -1,8 +1,9 @@
 import { motion } from 'motion/react';
-import useEventDetails from '../hooks/useEventDetails';
-import useQuantity from '../hooks/useQuantity';
-import useCartStore from '../store/useCartStore';
-import Button from '../components/Button/Button';
+import useEventDetails from '../../hooks/useEventDetails';
+import useQuantity from '../../hooks/useQuantity';
+import useCartStore from '../../store/useCartStore';
+import Button from '../../components/Button/Button';
+import './eventDetails.css';
 
 function EventDetails() {
 	const addToCart = useCartStore((state) => state.addToCart);

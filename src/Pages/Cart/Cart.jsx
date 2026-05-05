@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import useCartStore from '../store/useCartStore';
-import useCartTotals from '../hooks/useCartTotals';
-import Button from '../components/Button/Button';
+import useCartStore from '../../store/useCartStore';
+import useCartTotals from '../../hooks/useCartTotals';
+import Button from '../../components/Button/Button';
+import './cart.css';
 
 function Cart() {
 	const navigate = useNavigate();

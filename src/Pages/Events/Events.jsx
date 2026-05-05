@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import useEvents from '../hooks/useEvents.js';
+import useEvents from '../../hooks/useEvents.js';
 import { useState } from 'react';
+import './events.css';
 
 function Events() {
 	const { events, isLoading, error } = useEvents();

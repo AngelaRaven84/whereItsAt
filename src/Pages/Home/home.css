@@ -1,0 +1,27 @@
+.home {
+	position: relative;
+	padding: var(--space-xl);
+}
+
+.home__content {
+	min-height: calc(100vh - (var(--space-xl) * 2));
+	flex-direction: column;
+	text-align: center;
+	transform: translateY(-1.5rem);
+}
+
+.home__icon {
+	width: 150px;
+	margin-bottom: var(--space-md);
+}
+
+.home__title {
+	margin-bottom: var(--space-sm);
+}
+
+.home__tagline {
+	font-family: var(--font-main);
+	font-size: 1.05rem;
+	font-style: italic;
+	color: var(--text);
+}

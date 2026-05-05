@@ -1,5 +1,7 @@
 import { motion } from 'motion/react';
-import logoIcon from '../assets/logo.png';
+import logoIcon from '../../assets/logo.png';
+import './home.css';
+
 function Home() {
 	return (
 		<main className='page home'>
