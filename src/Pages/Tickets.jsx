@@ -9,6 +9,11 @@ const Tickets = () => {
 	const purchasedTickets = useCartStore((state) => state.purchasedTickets);
 	const [activeTicketId, setActiveTicketId] = useState(null);
 	const activeTicket = activeTicketId ?? purchasedTickets[0]?.ticketId;
+	const sortedTickets = [...purchasedTickets].sort((a, b) => {
+		if (a.ticketId === activeTicket) return -1;
+		if (b.ticketId === activeTicket) return 1;
+		return 0;
+	});
 
 	useEffect(() => {
 		if (showConfetti) {
@@ -36,7 +41,7 @@ const Tickets = () => {
 			{showConfetti && <Confetti />}
 			<section className='container tickets'>
 				<div className='tickets__stack'>
-					{purchasedTickets.map((ticket, index) => {
+					{sortedTickets.map((ticket, index) => {
 						const isActive = ticket.ticketId === activeTicket;
 
 						return (
@@ -44,7 +49,7 @@ const Tickets = () => {
 								key={ticket.ticketId}
 								className={`ticket ${isActive ? 'ticket--active' : ''}`}
 								style={{
-									zIndex: isActive ? 50 : purchasedTickets.length - index,
+									zIndex: purchasedTickets.length - index,
 								}}
 								initial={false}
 								animate={{
