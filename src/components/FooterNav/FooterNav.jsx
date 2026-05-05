@@ -12,7 +12,7 @@ function FooterNav() {
 				type='button'
 				className={`footer-nav__link ${location.pathname === '/tickets' ? 'active' : ''}`}
 				onClick={() => navigate('/tickets')}
-				aria-label='Biljetter'>
+				aria-label='dina biljetter'>
 				<Home size={24} />
 			</button>
 

@@ -54,7 +54,9 @@ function Order() {
 					<strong>{totalPrice} sek</strong>
 				</div>
 
-				<Button onClick={handleCheckout}>Bekräfta köp</Button>
+				<Button aria-label='Bekräfta köp' onClick={handleCheckout}>
+					Bekräfta köp
+				</Button>
 			</section>
 		</main>
 	);

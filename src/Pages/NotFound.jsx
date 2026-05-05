@@ -6,7 +6,9 @@ function NotFound() {
 			<h1>404</h1>
 			<p>Sidan finns inte</p>
 
-			<Link to='/'>Gå hem</Link>
+			<Link aria-label='Gå tillbaka' to='/'>
+				Gå tillbaka
+			</Link>
 		</section>
 	);
 }

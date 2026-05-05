@@ -14,10 +14,6 @@ function Home() {
 
 				<p className='home__tagline'>Ticketing made easy</p>
 			</motion.section>
-			<div className='home-dots'>
-				<span className='home__dot hhome__dot--active'></span>
-				<span className='home__dot'></span>
-			</div>
 		</main>
 	);
 }

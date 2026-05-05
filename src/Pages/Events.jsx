@@ -16,16 +16,15 @@ function Events() {
 
 	return (
 		<main className='page events'>
-			<div className='events-search'>
+			<label htmlFor='event-search' className='events-search'>
 				<input
 					type='search'
 					placeholder='Sök event'
 					value={searchTerm}
 					onChange={(e) => setSearchTerm(e.target.value)}
 					className='input'
-					aria-label='Sök event'
 				/>
-			</div>
+			</label>
 			<section className='container events__content'>
 				<div className='events__list'>
 					{filteredEvents.length === 0 ? (
@@ -49,6 +48,7 @@ function Events() {
 
 								<Link
 									to={`/events/${event.id}`}
+									aria-label={`Visa detaljer för ${event.name}`}
 									className='event-card__content'>
 									<h2 className='event-title'>{event.name}</h2>
 									<p className='event-card__where'>{event.where}</p>

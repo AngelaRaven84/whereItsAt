@@ -28,7 +28,7 @@ function Drawer({ closeDrawer, isClosing }) {
 				animate={{ x: isClosing ? '100%' : 0 }}
 				exit={{ x: '100%' }}
 				transition={{ duration: 0.25, ease: 'easeOut' }}
-				aria-label='Kundvagb'>
+				aria-label='Kundvagn'>
 				<div className='cart-drawer__header'>
 					<h2>Din kundvagn</h2>
 
@@ -84,6 +84,7 @@ function Drawer({ closeDrawer, isClosing }) {
 				)}
 
 				<Button
+					aria-label='Gå till kundvagnen'
 					onClick={() => {
 						closeDrawer();
 						navigate('/cart');

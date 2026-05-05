@@ -56,7 +56,9 @@ function EventDetails() {
 					</div>
 				</div>
 
-				<Button onClick={handleAddToCart}>Lägg i kundvagn</Button>
+				<Button aria-label='Lägg i kundvagnen' onClick={handleAddToCart}>
+					Lägg i kundvagn
+				</Button>
 			</section>
 		</motion.main>
 	);

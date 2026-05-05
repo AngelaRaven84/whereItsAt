@@ -75,7 +75,11 @@ export const Header = ({ activeSlide }) => {
 						aria-label='Öppna kundvagn'>
 						<ShoppingCart size={24} />
 						{totalItems > 0 && (
-							<span className='header__badge'>{totalItems}</span>
+							<span
+								aria-label={`${totalItems} biljetter i kundvagnen`}
+								className='header__badge'>
+								{totalItems}
+							</span>
 						)}
 					</button>
 				</div>

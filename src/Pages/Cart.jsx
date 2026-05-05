@@ -59,7 +59,11 @@ function Cart() {
 							<strong>{totalPrice} sek</strong>
 						</div>
 
-						<Button onClick={() => navigate('/order')}>Gå till order</Button>
+						<Button
+							aria-label='Gå till order'
+							onClick={() => navigate('/order')}>
+							Gå till order
+						</Button>
 					</>
 				)}
 			</section>

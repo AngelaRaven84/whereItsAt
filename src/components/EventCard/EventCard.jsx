@@ -9,7 +9,9 @@ function EventCard({ event }) {
 			<p>{event.when.date}</p>
 			<p>{event.price}</p>
 
-			<Link to={`/events/${event.id}`}>Visa detaljer</Link>
+			<Link aria-label='visa detaljer' to={`/events/${event.id}`}>
+				Visa detaljer
+			</Link>
 		</article>
 	);
 }
