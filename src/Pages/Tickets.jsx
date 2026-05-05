@@ -90,16 +90,17 @@ const Tickets = () => {
 										<span className='ticket__label'>To</span>
 										<p>{ticket.when.to}</p>
 									</div>
-								</section>
 
+									<div className='ticket__seating'>
+										<span className='ticket__label'>info</span>
+										<p>
+											{ticket.section} - seat {ticket.seat}
+										</p>
+									</div>
+								</section>
 								<section className='ticket__code'>
-									<p>{ticket.ticketId.slice(0, 8).toUpperCase()}</p>
-									<span>#{ticket.ticketId.slice(0, 8).toUpperCase()}</span>
-								</section>
-
-								<section className='ticket__footer'>
-									<p>Ordernummer</p>
-									<span>{ticket.orderNumber}</span>
+									<p>{ticket.ticketId.slice(0, 5).toUpperCase()}</p>
+									<span>#{ticket.ticketId.slice(0, 5).toUpperCase()}</span>
 								</section>
 							</motion.article>
 						);

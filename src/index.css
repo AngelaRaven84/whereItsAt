@@ -687,12 +687,14 @@ img {
 .ticket__details {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
+	width: 100%;
 	border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
 }
 
 .ticket__details div {
 	padding: 1rem;
 	border-right: 1px solid rgba(0, 0, 0, 0.12);
+	min-width: 0;
 }
 
 .ticket__details div:last-child {
@@ -702,6 +704,17 @@ img {
 .ticket__details p {
 	font-weight: 700;
 	font-size: 0.9rem;
+}
+
+.ticket__seating {
+	padding: var(--space-md);
+	border-top: 1px dashed rgba(0, 0, 0, 0.25);
+}
+
+.ticket__seating p {
+	font-family: var(--font-second);
+	font-size: 0.9rem;
+	white-space: nowrap;
 }
 
 .ticket__code {
@@ -723,21 +736,4 @@ img {
 	font-size: 0.75rem;
 	letter-spacing: 30%;
 	text-transform: uppercase;
-}
-
-.ticket__footer {
-	padding: 1rem;
-	background: rgba(0, 0, 0, 0.06);
-	word-break: break-all;
-}
-
-.ticket__footer p {
-	margin-bottom: 0.25rem;
-	color: rgba(0, 0, 0, 0.45);
-	font-size: 0.75rem;
-	text-transform: uppercase;
-}
-
-.ticket__footer span {
-	font-size: 0.75rem;
 }

@@ -1,6 +1,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+const section = [
+	'Section A',
+	'Section B',
+	'Section C',
+	'Section D',
+	'Section E',
+];
+
 const useCartStore = create(
 	persist(
 		(set, get) => ({
@@ -61,20 +69,33 @@ const useCartStore = create(
 
 			checkout: () => {
 				const cart = get().cart;
-				const orderNumber = crypto.randomUUID();
-
-				const tickets = get().cart.flatMap((item) =>
-					Array.from({ length: item.quantity }, () => ({
-						...item,
-						quantity: 1,
-						ticketId: crypto.randomUUID(),
-						orderNumber,
-					})),
+				const randSection = section[Math.floor(Math.random() * section.length)];
+				const totTickets = cart.reduce(
+					(sum, ticket) => sum + ticket.quantity,
+					0,
+				);
+				const totSeats = 50;
+				const firstSeat =
+					Math.floor(Math.random() * (totSeats - totTickets + 1)) + 1;
+				let seatCounter = 0;
+				const ticketWithSeat = cart.flatMap((ticket) =>
+					Array.from({ length: ticket.quantity }, () => {
+						const newTicket = {
+							...ticket,
+							quantity: 1,
+							section: randSection,
+							seat: firstSeat + seatCounter,
+							ticketId: crypto.randomUUID(),
+						};
+						seatCounter++;
+						return newTicket;
+					}),
 				);
 
 				set({
-					purchasedTickets: [...get().purchasedTickets, ...tickets],
+					purchasedTickets: ticketWithSeat,
 					cart: [],
+					showConfetti: true,
 				});
 			},
 		}),
@@ -82,7 +103,7 @@ const useCartStore = create(
 			name: 'cart-storage',
 			partialize: (state) => ({
 				cart: state.cart,
-				PurchasedTickets: state.purchasedTickets,
+				newTicket: state.newTicket,
 			}),
 		},
 	),
