@@ -38,6 +38,16 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: 0;
+	cursor: pointer;
+	transition:
+		background 0.2s ease,
+		color 0.2s ease,
+		transform 0.2s ease;
+}
+
+.cart-drawer__close svg:hover {
+	stroke: var(--accent);
 }
 
 .cart-drawer__empty {
@@ -94,6 +104,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.drawer-quantity button {
+	border: 0;
+	cursor: pointer;
 }
 
 .drawer-quantity span {

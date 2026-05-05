@@ -6,11 +6,12 @@ function Button({
 	type = 'button',
 	className = '',
 	disabled = false,
+	variant = 'primary',
 }) {
 	return (
 		<button
 			type={type}
-			className={`btn ${className}`}
+			className={`btn btn--${variant} ${className}`}
 			onClick={onClick}
 			disabled={disabled}>
 			{children}

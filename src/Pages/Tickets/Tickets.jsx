@@ -1,7 +1,8 @@
-import useCartStore from '../store/useCartStore';
+import useCartStore from '../../store/useCartStore';
 import { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
 import { motion } from 'motion/react';
+import './tickets.css';
 
 const Tickets = () => {
 	const showConfetti = useCartStore((state) => state.showConfetti);
@@ -9,6 +10,11 @@ const Tickets = () => {
 	const purchasedTickets = useCartStore((state) => state.purchasedTickets);
 	const [activeTicketId, setActiveTicketId] = useState(null);
 	const activeTicket = activeTicketId ?? purchasedTickets[0]?.ticketId;
+	const sortedTickets = [...purchasedTickets].sort((a, b) => {
+		if (a.ticketId === activeTicket) return -1;
+		if (b.ticketId === activeTicket) return 1;
+		return 0;
+	});
 
 	useEffect(() => {
 		if (showConfetti) {
@@ -35,16 +41,19 @@ const Tickets = () => {
 		<main className='page tickets-page'>
 			{showConfetti && <Confetti />}
 			<section className='container tickets'>
-				<div className='tickets__stack'>
-					{purchasedTickets.map((ticket, index) => {
+				<div className='tickets__stack' role='list' aria-label='Dina biljetter'>
+					{sortedTickets.map((ticket, index) => {
 						const isActive = ticket.ticketId === activeTicket;
 
 						return (
-							<motion.article
+							<motion.button
 								key={ticket.ticketId}
+								type='button'
+								aria-label={`Visa biljett ${index + 1}: ${ticket.name}`}
+								aria-pressed={isActive}
 								className={`ticket ${isActive ? 'ticket--active' : ''}`}
 								style={{
-									zIndex: isActive ? 50 : purchasedTickets.length - index,
+									zIndex: sortedTickets.length - index,
 								}}
 								initial={false}
 								animate={{
@@ -64,7 +73,22 @@ const Tickets = () => {
 									stiffness: 260,
 									damping: 24,
 								}}
-								onClick={() => setActiveTicketId(ticket.ticketId)}>
+								onClick={() => setActiveTicketId(ticket.ticketId)}
+								onKeyDown={(e) => {
+									if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+										e.preventDefault();
+										const nextTicket =
+											sortedTickets[index + 1] ?? sortedTickets[0];
+										setActiveTicketId(nextTicket.ticketId);
+									}
+									if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+										e.preventDefault();
+										const previousTicket =
+											sortedTickets[index - 1] ??
+											sortedTickets[sortedTickets.length - 1];
+										setActiveTicketId(previousTicket.ticketId);
+									}
+								}}>
 								<section className='ticket__section ticket__what'>
 									<span className='ticket__label'>What</span>
 									<h2>{ticket.name}</h2>
@@ -90,18 +114,19 @@ const Tickets = () => {
 										<span className='ticket__label'>To</span>
 										<p>{ticket.when.to}</p>
 									</div>
-								</section>
 
+									<div className='ticket__seating'>
+										<span className='ticket__label'>info</span>
+										<p>
+											{ticket.section} - seat {ticket.seat}
+										</p>
+									</div>
+								</section>
 								<section className='ticket__code'>
-									<p>{ticket.ticketId.slice(0, 8).toUpperCase()}</p>
-									<span>#{ticket.ticketId.slice(0, 8).toUpperCase()}</span>
+									<h3>{ticket.ticketId.slice(0, 5).toUpperCase()}</h3>
+									<span>#{ticket.ticketId.slice(0, 5).toUpperCase()}</span>
 								</section>
-
-								<section className='ticket__footer'>
-									<p>Ordernummer</p>
-									<span>{ticket.orderNumber}</span>
-								</section>
-							</motion.article>
+							</motion.button>
 						);
 					})}
 				</div>

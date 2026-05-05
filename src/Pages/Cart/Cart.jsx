@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import useCartStore from '../store/useCartStore';
-import useCartTotals from '../hooks/useCartTotals';
-import Button from '../components/Button/Button';
+import useCartStore from '../../store/useCartStore';
+import useCartTotals from '../../hooks/useCartTotals';
+import Button from '../../components/Button/Button';
+import './cart.css';
 
 function Cart() {
 	const navigate = useNavigate();
@@ -27,27 +28,27 @@ function Cart() {
 									</div>
 
 									<div className='cart-item__controls'>
-										<p className='cart-item__price'>
+										<h3 className='cart-item__price'>
 											{item.price * item.quantity} sek
-										</p>
+										</h3>
 										<div className='cart-item__quantity'>
-											<button
-												type='button'
+											<Button
+												variant='quantity'
+												aria-label='Minska antalet biljetter'
 												onClick={() =>
 													item.quantity <= 1
 														? removeFromCart(item.id)
 														: decreaseQuantity(item.id)
 												}>
-												{' '}
-												-{' '}
-											</button>
+												-
+											</Button>
 											<span>{item.quantity}</span>
-											<button
-												type='button'
+											<Button
+												variant='quantity'
+												aria-label='Öka antalet biljetter'
 												onClick={() => increaseQuantity(item.id)}>
-												{' '}
-												+{' '}
-											</button>
+												+
+											</Button>
 										</div>
 									</div>
 								</article>
@@ -59,7 +60,11 @@ function Cart() {
 							<strong>{totalPrice} sek</strong>
 						</div>
 
-						<Button onClick={() => navigate('/order')}>Gå till order</Button>
+						<Button
+							aria-label='Gå till order'
+							onClick={() => navigate('/order')}>
+							Gå till order
+						</Button>
 					</>
 				)}
 			</section>

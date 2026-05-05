@@ -1,8 +1,9 @@
 import { motion } from 'motion/react';
-import useEventDetails from '../hooks/useEventDetails';
-import useQuantity from '../hooks/useQuantity';
-import useCartStore from '../store/useCartStore';
-import Button from '../components/Button/Button';
+import useEventDetails from '../../hooks/useEventDetails';
+import useQuantity from '../../hooks/useQuantity';
+import useCartStore from '../../store/useCartStore';
+import Button from '../../components/Button/Button';
+import './eventDetails.css';
 
 function EventDetails() {
 	const addToCart = useCartStore((state) => state.addToCart);
@@ -36,20 +37,29 @@ function EventDetails() {
 				</div>
 
 				<div className='ticket-box'>
-					<p className='ticket-box__price'>{event.price * quantity} sek</p>
+					<h2 className='ticket-box__price'>{event.price * quantity} sek</h2>
 
 					<div className='ticket-box__quantity'>
-						<button type='button' onClick={decrease} disabled={quantity <= 1}>
+						<Button
+							variant='quantity'
+							aria-label='Minska antalet biljetter'
+							onClick={decrease}
+							disabled={quantity <= 1}>
 							-
-						</button>
+						</Button>
 						<span>{quantity}</span>
-						<button type='button' onClick={increase}>
+						<Button
+							variant='quantity'
+							aria-label='Öka antalet biljetter'
+							onClick={increase}>
 							+
-						</button>
+						</Button>
 					</div>
 				</div>
 
-				<Button onClick={handleAddToCart}>Lägg i kundvagn</Button>
+				<Button aria-label='Lägg i kundvagnen' onClick={handleAddToCart}>
+					Lägg i kundvagn
+				</Button>
 			</section>
 		</motion.main>
 	);

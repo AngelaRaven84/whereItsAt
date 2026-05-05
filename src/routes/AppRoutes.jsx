@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import RootLayout from '../layouts/RootLayout';
-import Onboarding from '../Pages/Onboarding';
-import Events from '../Pages/Events';
-import EventDetails from '../Pages/EventDetails';
-import Cart from '../Pages/Cart';
-import Order from '../Pages/Order';
-import Tickets from '../Pages/Tickets';
-import NotFound from '../Pages/NotFound';
+import Onboarding from '../layouts/Onboarding';
+import Events from '../Pages/Events/Events';
+import EventDetails from '../Pages/EventDetails/EventDetails';
+import Cart from '../Pages/Cart/Cart';
+import Order from '../Pages/Order/Order';
+import Tickets from '../Pages/Tickets/Tickets';
+import NotFound from '../Pages/NotFound/NotFound';
 
 function AppRoutes() {
 	return (

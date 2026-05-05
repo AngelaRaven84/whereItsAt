@@ -1,20 +1,42 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import useEvents from '../hooks/useEvents.js';
+import useEvents from '../../hooks/useEvents.js';
+import { useState } from 'react';
+import './events.css';
 
 function Events() {
 	const { events, isLoading, error } = useEvents();
+	const [searchTerm, setSearchTerm] = useState('');
+
 	if (isLoading) return <p>Laddar events...</p>;
 	if (error) return <p>{error}</p>;
 
+	const filteredEvents = events.filter((event) =>
+		event.name.toLowerCase().includes(searchTerm.toLowerCase()),
+	);
+
 	return (
 		<main className='page events'>
+			<label htmlFor='event-search' className='sr-only'>
+				Sök event
+			</label>
+			<div className='input-wrapper'>
+				<input
+					id='event-search'
+					type='search'
+					placeholder='Sök event'
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e.target.value)}
+					className='input'
+				/>
+			</div>
+
 			<section className='container events__content'>
 				<div className='events__list'>
-					{events.length === 0 ? (
+					{filteredEvents.length === 0 ? (
 						<p>Inga events hittades.</p>
 					) : (
-						events.map((event) => (
+						filteredEvents.map((event) => (
 							<motion.article
 								key={event.id}
 								className='list-item event-card'
@@ -32,6 +54,7 @@ function Events() {
 
 								<Link
 									to={`/events/${event.id}`}
+									aria-label={`Visa detaljer för ${event.name}`}
 									className='event-card__content'>
 									<h2 className='event-title'>{event.name}</h2>
 									<p className='event-card__where'>{event.where}</p>

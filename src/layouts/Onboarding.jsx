@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import Home from './Home';
-import Events from './Events';
+import Home from '../Pages/Home/Home';
+import Events from '../Pages/Events/Events';
 import Header from '../components/Header/Header';
 import FooterNav from '../components/FooterNav/FooterNav';
 
