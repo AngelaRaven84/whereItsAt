@@ -179,17 +179,12 @@ img {
 	margin-top: var(--space-sm);
 }
 
-.quantity button,
 .quantity span {
 	padding: 0.7rem;
 	text-align: center;
 	color: var(--text);
 	background: transparent;
 	border-right: 1px solid var(--border);
-}
-
-.quantity button:last-child {
-	border-right: none;
 }
 
 /* Utility */
@@ -234,26 +229,6 @@ img {
 	font-size: 1.05rem;
 	font-style: italic;
 	color: var(--text);
-}
-
-.home__dots {
-	position: absolute;
-	left: 50%;
-	bottom: var(--space-xl);
-	transform: translateX(-50%);
-	display: flex;
-	gap: var(--space-sm);
-}
-
-.home__dot {
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: rgba(255, 255, 255, 0.25);
-}
-
-.home__dot--active {
-	background: var(--text);
 }
 
 /* EVENTS */
@@ -379,7 +354,6 @@ img {
 	grid-template-columns: 1fr 1fr 1fr;
 }
 
-.ticket-box__quantity button,
 .ticket-box__quantity span {
 	min-height: 52px;
 	background: transparent;
@@ -392,17 +366,8 @@ img {
 	font-weight: 700;
 }
 
-.ticket-box__quantity button {
-	border-right: 1px solid var(--primary);
-}
-
 .ticket-box__quantity span {
 	border-right: 1px solid var(--primary);
-}
-
-.ticket-box__quantity button:disabled {
-	opacity: 0.3;
-	cursor: not-allowed;
 }
 
 /* CART */
@@ -470,22 +435,18 @@ img {
 	border-left: 1px solid var(--primary);
 }
 
-.cart-item__quantity button,
 .cart-item__quantity span {
 	height: 52px;
 	background: transparent;
-	color: vvar(--text);
+	color: var(--text);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-family: var(--font-second);
 	font-size: 1.1rem;
 	font-weight: 700;
+	cursor: pointer;
 	border-right: 1px solid var(--primary);
-}
-
-.cart-item__quantity button:last-child {
-	border-right: none;
 }
 
 .cart__summary {

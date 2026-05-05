@@ -39,13 +39,20 @@ function EventDetails() {
 					<p className='ticket-box__price'>{event.price * quantity} sek</p>
 
 					<div className='ticket-box__quantity'>
-						<button type='button' onClick={decrease} disabled={quantity <= 1}>
+						<Button
+							variant='quantity'
+							aria-label='Minska antalet biljetter'
+							onClick={decrease}
+							disabled={quantity <= 1}>
 							-
-						</button>
+						</Button>
 						<span>{quantity}</span>
-						<button type='button' onClick={increase}>
+						<Button
+							variant='quantity'
+							aria-label='Öka antalet biljetter'
+							onClick={increase}>
 							+
-						</button>
+						</Button>
 					</div>
 				</div>
 

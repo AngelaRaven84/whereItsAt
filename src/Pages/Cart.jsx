@@ -31,23 +31,23 @@ function Cart() {
 											{item.price * item.quantity} sek
 										</p>
 										<div className='cart-item__quantity'>
-											<button
-												type='button'
+											<Button
+												variant='quantity'
+												aria-label='Minska antalet biljetter'
 												onClick={() =>
 													item.quantity <= 1
 														? removeFromCart(item.id)
 														: decreaseQuantity(item.id)
 												}>
-												{' '}
-												-{' '}
-											</button>
+												-
+											</Button>
 											<span>{item.quantity}</span>
-											<button
-												type='button'
+											<Button
+												variant='quantity'
+												aria-label='Öka antalet biljetter'
 												onClick={() => increaseQuantity(item.id)}>
-												{' '}
-												+{' '}
-											</button>
+												+
+											</Button>
 										</div>
 									</div>
 								</article>

@@ -35,6 +35,8 @@
 	align-items: center;
 	justify-content: center;
 	position: relative;
+	border: 0;
+	cursor: pointer;
 	transition:
 		background 0.2s ease,
 		color 0.2s ease,

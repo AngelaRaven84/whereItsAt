@@ -55,23 +55,21 @@ function Drawer({ closeDrawer, isClosing }) {
 								</div>
 
 								<div className='drawer-quantity'>
-									<button
-										type='button'
+									<Button
+										variant='quantity'
 										onClick={() => decreaseQuantity(item.id)}
 										aria-label={`Minska antal biljetter för ${item.name}`}>
-										{' '}
-										-{' '}
-									</button>
+										-
+									</Button>
 
 									<span>{item.quantity}</span>
 
-									<button
-										type='button'
+									<Button
+										variant='quantity'
 										onClick={() => increaseQuantity(item.id)}
 										aria-label={`Öka antal biljetter för ${item.name}`}>
-										{' '}
-										+{' '}
-									</button>
+										+
+									</Button>
 								</div>
 							</article>
 						))}
