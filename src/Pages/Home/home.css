@@ -7,7 +7,6 @@
 	min-height: calc(100vh - (var(--space-xl) * 2));
 	flex-direction: column;
 	text-align: center;
-	transform: translateY(-1.5rem);
 }
 
 .home__icon {
