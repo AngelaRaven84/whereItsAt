@@ -8,7 +8,7 @@ function Home() {
 			<motion.section
 				className='container center home__content'
 				initial={{ opacity: 0, y: 96 }}
-				animate={{ opacity: 1, y: 1 }}
+				animate={{ opacity: 1, y: -24 }}
 				transition={{ duration: 0.5 }}>
 				<img src={logoIcon} alt="Where It's @ icon" className='home__icon' />
 
