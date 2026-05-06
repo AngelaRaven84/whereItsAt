@@ -91,7 +91,7 @@ const useCartStore = create(
 				});
 
 				set({
-					purchasedTickets,
+					purchasedTickets: [...get().purchasedTickets, ...purchasedTickets],
 					cart: [],
 					showConfetti: true,
 				});

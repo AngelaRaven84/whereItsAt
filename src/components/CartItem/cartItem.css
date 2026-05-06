@@ -9,11 +9,6 @@
 	border-bottom: 1px solid var(--primary);
 }
 
-.cart-item__info {
-	padding: clamp(var(--space-md), 4vw, var(--space-lg));
-	border-bottom: 1px solid var(--primary);
-}
-
 .cart-item__title {
 	margin-bottom: var(--space-xs);
 	color: var(--primary);
