@@ -93,7 +93,7 @@ const useCartStore = create(
 				set({
 					purchasedTickets,
 					cart: [],
-					shoxConfetti: true,
+					showConfetti: true,
 				});
 			},
 		}),
