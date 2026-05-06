@@ -4,7 +4,7 @@
 }
 
 .order-page__inner {
-	width: min(100%, 520px);
+	width: min(100%, var(--max-width-sm));
 	min-height: calc(100vh - 150px);
 	margin-inline: auto;
 	display: flex;

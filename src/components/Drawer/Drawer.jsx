@@ -8,9 +8,7 @@ import './drawer.css';
 
 function Drawer({ closeDrawer, isClosing }) {
 	const navigate = useNavigate();
-	const cart = useCartStore((state) => state.cart);
-	const increaseQuantity = useCartStore((state) => state.increaseQuantity);
-	const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
+	const { cart, increaseQuantity, decreaseQuantity } = useCartStore();
 	const { totalPrice } = useCartTotals(cart);
 
 	return (

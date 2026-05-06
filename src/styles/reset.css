@@ -12,12 +12,9 @@ img {
 button,
 input {
 	font: inherit;
+	background: none;
 }
 
-button {
+button:not(:disabled) {
 	cursor: pointer;
-}
-
-input {
-	border: none;
 }

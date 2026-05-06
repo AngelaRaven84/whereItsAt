@@ -4,12 +4,12 @@
 }
 
 .events__inner {
-	width: min(100%, 720px);
+	width: min(100%, var(--max-width));
 	margin-inline: auto;
 }
 
 .events__search {
-	width: min(100%, 520px);
+	width: min(100%, var(--max-width-sm));
 	margin-inline: auto;
 	margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }

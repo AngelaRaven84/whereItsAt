@@ -5,9 +5,7 @@ import TicketCard from '../../components/TicketCard/TicketCard';
 import './tickets.css';
 
 function Tickets() {
-	const showConfetti = useCartStore((state) => state.showConfetti);
-	const stopConfetti = useCartStore((state) => state.stopConfetti);
-	const purchasedTickets = useCartStore((state) => state.purchasedTickets);
+	const { showConfetti, stopConfetti, purchasedTickets } = useCartStore();
 
 	const [activeTicketId, setActiveTicketId] = useState(null);
 

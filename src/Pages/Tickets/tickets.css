@@ -33,7 +33,7 @@
 
 @media (min-width: 768px) {
 	.tickets-page__inner {
-		width: min(100%, 520px);
+		width: min(100%, var(--max-width-sm));
 	}
 
 	.tickets__stack {

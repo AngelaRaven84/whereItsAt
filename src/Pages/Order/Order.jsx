@@ -7,9 +7,7 @@ import './order.css';
 
 function Order() {
 	const navigate = useNavigate();
-
-	const cart = useCartStore((state) => state.cart);
-	const checkout = useCartStore((state) => state.checkout);
+	const { cart, checkout } = useCartStore();
 
 	const { totalPrice } = useCartTotals(cart);
 

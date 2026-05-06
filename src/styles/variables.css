@@ -10,7 +10,7 @@
 	--text: #ffffff;
 	--text-muted: #d7d5e3;
 	--border: #f56b9a;
-	--line: #9a9a9d;
+	--line: rgba(255, 255, 255, 0.25);
 
 	/* SPACING */
 	--space-xs: 0.5rem;
@@ -26,4 +26,7 @@
 	/* FONTS */
 	--font-main: 'Sansita One', cursive;
 	--font-second: 'Fira Sans', sans-serif;
+
+	--max-width: 720px;
+	--max-width-sm: 520px;
 }

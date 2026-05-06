@@ -3,9 +3,8 @@ import useCartStore from '../../store/useCartStore';
 import './cartItem.css';
 
 function CartItem({ item }) {
-	const increaseQuantity = useCartStore((s) => s.increaseQuantity);
-	const decreaseQuantity = useCartStore((s) => s.decreaseQuantity);
-	const removeFromCart = useCartStore((s) => s.removeFromCart);
+	const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
+		useCartStore();
 
 	const { id, name, when, price, quantity } = item;
 
