@@ -10,36 +10,40 @@ function EventDetails() {
 	const { event, isLoading, error } = useEventDetails();
 	const { quantity, increase, decrease } = useQuantity();
 
-	const handleAddToCart = () => {
-		addToCart({ ...event, quantity });
-	};
-
 	if (isLoading) return <p>Laddar event...</p>;
 	if (error) return <p>{error}</p>;
 	if (!event) return <p>Eventet hittades inte.</p>;
 
+	const { name, where, when, price } = event;
+	const totalPrice = price * quantity;
+
+	const handleAddToCart = () => {
+		addToCart({ ...event, quantity });
+	};
+
 	return (
 		<motion.main
-			className='page details-page'
+			className='page event-details'
 			initial={{ opacity: 0, y: 14 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.35 }}>
-			<section className='container detail'>
-				<div className='detail__hero'>
-					<p className='detail__eyebrow'>
+			<section className='event-details__inner'>
+				<div className='event-details__hero'>
+					<p className='event-details__eyebrow'>
 						You are about to score some tickets to
 					</p>
-					<h1 className='detail__title'>{event.name}</h1>
-					<p className='detail__date'>
-						{event.when?.date} kl {event.when?.from} - {event.when?.to}
+
+					<h1 className='event-details__title'>{name}</h1>
+					<p className='event-details__date'>
+						{when?.date} kl {when?.from} - {when?.to}
 					</p>
-					<p className='detail__location'>@ {event.where}</p>
+					<p className='event-details__location'>@ {where}</p>
 				</div>
 
-				<div className='ticket-box'>
-					<h2 className='ticket-box__price'>{event.price * quantity} sek</h2>
+				<div className='event-details__ticket'>
+					<h2 className='event-details__price'>{totalPrice} sek</h2>
 
-					<div className='ticket-box__quantity'>
+					<div className='event-details__quantity'>
 						<Button
 							variant='quantity'
 							aria-label='Minska antalet biljetter'
@@ -47,7 +51,8 @@ function EventDetails() {
 							disabled={quantity <= 1}>
 							-
 						</Button>
-						<span>{quantity}</span>
+						<span aria-label={`Antal biljetter: ${quantity}`}>{quantity}</span>
+
 						<Button
 							variant='quantity'
 							aria-label='Öka antalet biljetter'
