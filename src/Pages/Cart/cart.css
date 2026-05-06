@@ -17,3 +17,22 @@
 	flex-direction: column;
 	gap: var(--space-md);
 }
+
+.cart-page__summary p {
+	margin-bottom: var(--space-xs);
+	color: var(--text-muted);
+	font-size: 0.95rem;
+}
+
+.cart-page__summary strong {
+	color: var(--accent);
+	font-size: clamp(2rem, 7vw, 2.7rem);
+	font-weight: 700;
+}
+
+.cart-page__empty {
+	margin: auto 0;
+	text-align: center;
+	font-family: var(--font-second);
+	color: var(--text-muted);
+}
