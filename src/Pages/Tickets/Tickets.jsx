@@ -96,32 +96,33 @@ const Tickets = () => {
 
 								<section className='ticket__section ticket__where'>
 									<span className='ticket__label'>Where</span>
-									<p>{ticket.where}</p>
+									<h3>{ticket.where}</h3>
 								</section>
 
-								<section className='ticket__details'>
+								<section className='ticket__time'>
 									<div>
 										<span className='ticket__label'>When</span>
-										<p>{ticket.when.date}</p>
+										<h3>{ticket.when.date}</h3>
 									</div>
 
 									<div>
 										<span className='ticket__label'>From</span>
-										<p>{ticket.when.from}</p>
+										<h3>{ticket.when.from}</h3>
 									</div>
 
 									<div>
 										<span className='ticket__label'>To</span>
-										<p>{ticket.when.to}</p>
-									</div>
-
-									<div className='ticket__seating'>
-										<span className='ticket__label'>info</span>
-										<p>
-											{ticket.section} - seat {ticket.seat}
-										</p>
+										<h3>{ticket.when.to}</h3>
 									</div>
 								</section>
+
+								<section className='ticket__info'>
+									<span className='ticket__label'>info</span>
+									<h3>
+										{ticket.section} - seat {ticket.seat}
+									</h3>
+								</section>
+
 								<section className='ticket__code'>
 									<h3>{ticket.ticketId.slice(0, 5).toUpperCase()}</h3>
 									<span>#{ticket.ticketId.slice(0, 5).toUpperCase()}</span>
