@@ -24,6 +24,9 @@
 	--radius-md: 8px;
 
 	/* FONTS */
-	--font-main: 'Sansita', cursive;
+	--font-main: 'Sansita One', cursive;
 	--font-second: 'Fira Sans', sans-serif;
+
+	--max-width: 720px;
+	--max-width-sm: 520px;
 }

@@ -3,10 +3,14 @@
 	top: 0;
 	z-index: 100;
 	display: grid;
-	grid-template-columns: 44px 1fr 44px;
+	grid-template-columns: 40px 1fr 40px;
 	align-items: center;
 	padding: var(--space-md) var(--space-lg);
 	backdrop-filter: blur(2px);
+}
+
+.header h1 {
+	text-align: center;
 }
 
 .header__side {

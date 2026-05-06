@@ -6,7 +6,7 @@
 	color: var(--text);
 	font-family: var(--font-second);
 	font-weight: 700;
-	font-family: 1rem;
+	font-size: 1rem;
 	cursor: pointer;
 	transition:
 		transform 0.2s ease,

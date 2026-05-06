@@ -16,14 +16,13 @@ a {
 }
 
 .page {
-	width: 100%;
-	min-height: 100dvh;
-	padding: clamp (var(--space-md), 4vw, var(--space-xl));
+	min-height: 100vh;
+	padding: clamp(var(--space-lg), 4vw, 3rem) clamp(1.25rem, 5vw, 4rem);
 	background: var(--bg);
 }
 
 .container {
-	width: min(100%, 430px);
+	width: min(100%, var(--max-width-sm));
 	margin-inline: auto;
 }
 
@@ -32,15 +31,8 @@ a {
 	outline-offset: 3px;
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible {
-	outline: 3px solid var(--accent);
-	outline-offset: 3px;
-}
-
 @media (min-width: 768px) {
 	.container {
-		width: min(100%, 520px);
+		width: min(100%, var(--max-width));
 	}
 }

@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-const section = [
-	'Section A',
-	'Section B',
-	'Section C',
-	'Section D',
-	'Section E',
-];
+const generateTicketId = () => {
+	const chars = 'ABCDEFGHIJKLMNOPQRSTUVwXYZ0123456789';
+
+	return Array.from({ length: 5 }, () =>
+		chars.charAt(Math.floor(Math.random() * chars.length)),
+	).join('');
+};
 
 const useCartStore = create(
 	persist(
@@ -68,32 +68,30 @@ const useCartStore = create(
 			},
 
 			checkout: () => {
-				const cart = get().cart;
-				const randSection = section[Math.floor(Math.random() * section.length)];
-				const totTickets = cart.reduce(
-					(sum, ticket) => sum + ticket.quantity,
-					0,
-				);
-				const totSeats = 50;
-				const firstSeat =
-					Math.floor(Math.random() * (totSeats - totTickets + 1)) + 1;
-				let seatCounter = 0;
-				const ticketWithSeat = cart.flatMap((ticket) =>
-					Array.from({ length: ticket.quantity }, () => {
-						const newTicket = {
-							...ticket,
-							quantity: 1,
-							section: randSection,
-							seat: firstSeat + seatCounter,
-							ticketId: crypto.randomUUID(),
-						};
-						seatCounter++;
-						return newTicket;
-					}),
-				);
+				const sections = [
+					'Section A',
+					'Section B',
+					'Section C',
+					'Section D',
+					'Section E',
+				];
+
+				const purchasedTickets = get().cart.flatMap((event) => {
+					const randSection =
+						sections[Math.floor(Math.random() * sections.length)];
+
+					const firstSeat = Math.floor(Math.random() * 50) + 1;
+
+					return Array.from({ length: event.quantity }, (_, index) => ({
+						...event,
+						ticketId: generateTicketId(),
+						section: randSection,
+						seat: firstSeat + index,
+					}));
+				});
 
 				set({
-					purchasedTickets: ticketWithSeat,
+					purchasedTickets: [...get().purchasedTickets, ...purchasedTickets],
 					cart: [],
 					showConfetti: true,
 				});
@@ -103,7 +101,7 @@ const useCartStore = create(
 			name: 'cart-storage',
 			partialize: (state) => ({
 				cart: state.cart,
-				newTicket: state.newTicket,
+				purchasedTickets: state.purchasedTickets,
 			}),
 		},
 	),
