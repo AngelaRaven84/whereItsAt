@@ -19,41 +19,48 @@ Where It's @ är en React-applikation där användaren kan bläddra bland events
 ```bash
 npm install
 npm run dev
+```
+
+---
 
 ### React Router
+
 Används för routing mellan sidor som Home, Events, EventDetails, Cart och Tickets.
 
 ### Zustand
-Ett sätt att kunna hantera global state managment, i det här fallet så är det kundvagnen främst som drar nytta av det. Men använde det även vid köpta biljetter och konfettistatus.
+
+Ett sätt att kunna hantera global state i applikationen, i det här fallet så är det kundvagnen främst som drar nytta av det. Men använde det även vid köpta biljetter och konfettistatus. State uppdateras via funktioner som t.ex addToCart, checkout och increaseQuantity, sen sparas det i localStorage och till hjälp har jag persist middleware.
 
 ### Motion
-Vill göra lite snygga animationer och testa hur den här fungerar. Det blev att använda animationer på drawern och biljetter.
+
+Vill göra lite snygga animationer och testa hur den här fungerar. Det blev att använda animationer på drawern och biljetter. I min applikation blev det en motion.div och en motion.button. Dels för att kunna animera drawern så den snyggt glider in och ut från sidan av skärmen. Det stora jobbet med motion blev helt klart mina köpta biljetter. Jag stackade dem som en hög papper med hjälp av transform och scale. Där man kan klicka fram varje biljett om man vill. Nog det svåraste jag nånsin gjort och det som tog allra längst tid. Men så värt det i slutändan.
 
 ### Swiper
-Blev ett onboarding-flöde mellan startsidan och eventlistan.
 
-### React Hot Toast
-Är bra för att få upp lite pop-up meddelanden som man kanske kan lägga felmeddelanden i. Inte gjort något än dock.
+Blev ett onboarding-flöde mellan startsidan och eventlistan. Jag använde **swiper och swiperSlide** för att skapa en swipe-baserad navigation istället för en tråkig knapp eller en splashpage som jag redan gjort så många gånger förut.
 
 ### React-confetti
-Vem vill inte ha lite konfetti när man ska på event och ha roligt, en liten förfest innan förfesten börjar ens XD
+
+Vem vill inte ha lite konfetti när man ska på event och ha roligt, en liten förfest innan förfesten börjar ens. Jag triggade den via en global state ( showConfetti ) i Zustand.
 
 ### Lucide-react
-Nånstans där jag kan hämt hem simpla ikoner för min header och footernavigation.
+
+Ett ikonbibliotek där jag använde simpla ikoner för min header och footernavigation.
 
 ### Axios
+
 för enklare API-anrop
 
 ### React-router-dom
+
 För att ha en enkel routing mellan sidor
-```
 
 ## Tillgänglighet
 
 Projektet använder:
 
 - aria-labels på ikonknappar
-- semantiska element som main, sevtion och nav
+- semantiska element som main, section och nav
 - focus-visible styles
 - tydliga kontraster
 - responsiv layout för mobilstorlek
