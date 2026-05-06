@@ -1,0 +1,76 @@
+.header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	display: grid;
+	grid-template-columns: 40px 1fr 40px;
+	align-items: center;
+	padding: var(--space-md) var(--space-lg);
+	backdrop-filter: blur(2px);
+}
+
+.header h1 {
+	text-align: center;
+}
+
+.header__side {
+	display: flex;
+	align-items: center;
+}
+
+.header__side--right {
+	justify-content: flex-end;
+}
+
+.header__title {
+	font-family: var(--font-main);
+	color: var(--primary);
+	font-size: 1.5rem;
+	font-style: italic;
+	text-align: center;
+}
+
+.header__icon {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	border: 0;
+	cursor: pointer;
+	transition:
+		background 0.2s ease,
+		color 0.2s ease,
+		transform 0.2s ease;
+}
+
+.header__icon svg {
+	stroke: var(--primary);
+}
+
+.header__icon svg:hover {
+	stroke: var(--accent);
+}
+
+/* BADGE */
+
+.header__badge {
+	position: absolute;
+	top: 2px;
+	right: 0;
+	min-width: 18px;
+	height: 18px;
+	padding: 0 5px;
+	border-radius: 50%;
+	background: var(--button);
+	color: var(--text);
+	font-family: var(--font-second);
+	font-size: 0.8rem;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

@@ -1,0 +1,26 @@
+.page-title {
+	color: var(--primary);
+	font-size: clamp(1.8rem, 6vw, 2.6rem);
+	line-height: 1.1;
+	text-transform: uppercase;
+	font-weight: 800;
+	font-style: italic;
+	text-align: center;
+	margin-bottom: var(--space-xl);
+}
+
+.event-title {
+	color: var(--primary);
+	font-size: clamp(1.3rem, 4vw, 1.6rem);
+	font-weight: 800;
+	font-style: italic;
+}
+
+.text-muted {
+	color: var(--text-muted);
+}
+
+.price {
+	color: var(--accent);
+	font-weight: 700;
+}

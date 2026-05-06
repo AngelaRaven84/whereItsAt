@@ -1,0 +1,38 @@
+html,
+body {
+	min-height: 100%;
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-main);
+}
+
+body {
+	overflow-x: hidden;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.page {
+	min-height: 100vh;
+	padding: clamp(var(--space-lg), 4vw, 3rem) clamp(1.25rem, 5vw, 4rem);
+	background: var(--bg);
+}
+
+.container {
+	width: min(100%, var(--max-width-sm));
+	margin-inline: auto;
+}
+
+:focus-visible {
+	outline: 3px solid var(--accent);
+	outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+	.container {
+		width: min(100%, var(--max-width));
+	}
+}

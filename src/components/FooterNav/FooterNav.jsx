@@ -1,21 +1,36 @@
-import { NavLink } from 'react-router-dom';
-import useCartStore from '../../store/useCartStore.js';
+import { Home, CalendarDays, ShoppingCart } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './footerNav.css';
 
 function FooterNav() {
-	const cart = useCartStore((state) => state.cart);
-	const totalTickets = cart.reduce((sum, item) => {
-		return sum + item.quantity;
-	}, 0);
+	const navigate = useNavigate();
+	const location = useLocation();
 
 	return (
 		<nav className='footer-nav'>
-			<NavLink to='/events'>Events</NavLink>
-			<NavLink to='/cart' className='cartLink'>
-				Kundvagn
-				{totalTickets > 0 && <span className='badge'>{totalTickets}</span>}
-			</NavLink>
-			<NavLink to='/tickets'>Biljetter</NavLink>
+			<button
+				type='button'
+				className={`footer-nav__link ${location.pathname === '/tickets' ? 'active' : ''}`}
+				onClick={() => navigate('/tickets')}
+				aria-label='dina biljetter'>
+				<Home size={24} />
+			</button>
+
+			<button
+				type='button'
+				className={`footer-nav__link ${location.pathname === '/events' ? 'active' : ''}`}
+				onClick={() => navigate('/events')}
+				aria-label='Events'>
+				<CalendarDays size={24} />
+			</button>
+
+			<button
+				type='button'
+				className={`footer-nav__link ${location.pathname === '/cart' ? 'active' : ''}`}
+				onClick={() => navigate('/cart')}
+				aria-label='Kundvagn'>
+				<ShoppingCart size={24} />
+			</button>
 		</nav>
 	);
 }

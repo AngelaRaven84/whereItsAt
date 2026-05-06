@@ -1,0 +1,35 @@
+.footer-nav {
+	position: fixed;
+	left: 50%;
+	bottom: var(--space-md);
+	z-index: 100;
+	transform: translateX(-50%);
+	width: min(calc(100% - 2rem), 390px);
+	padding: var(--space-sm) var(--space-lg);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 999px;
+}
+
+.footer-nav__link {
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--primary);
+	position: relative;
+	transition:
+		background 0.2s ease,
+		color 0.2s ease,
+		transform 0.2s ease;
+}
+
+.footer-nav__link:hover {
+	color: var(--accent);
+}

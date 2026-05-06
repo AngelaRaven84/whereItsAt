@@ -1,0 +1,52 @@
+.btn--primary {
+	width: 100%;
+	padding: var(--space-md);
+	border-radius: var(--radius-sm);
+	background: var(--button);
+	color: var(--text);
+	font-family: var(--font-second);
+	font-weight: 700;
+	font-size: 1rem;
+	cursor: pointer;
+	transition:
+		transform 0.2s ease,
+		opacity 0.2s ease;
+}
+
+.btn--primary:hover {
+	transform: translateY(-2px);
+	opacity: 0.95;
+}
+
+.btn--primary:active {
+	transform: translateY(0);
+}
+
+.btn--primary:focus-visible {
+	outline: 3px solid var(--primary);
+	outline-offset: 3px;
+}
+
+.btn--primary:disabled,
+.btn--quantity:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.btn--quantity {
+	height: 52px;
+	background: transparent;
+	color: var(--text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-second);
+	font-size: 1.1rem;
+	font-weight: 700;
+	cursor: pointer;
+	border-right: 1px solid var(--primary);
+}
+
+.btn--quantity:last-child {
+	border-right: none;
+}
