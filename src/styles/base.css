@@ -17,13 +17,14 @@ a {
 
 .page {
 	width: 100%;
-	min-height: 100dvh;
-	padding: clamp (var(--space-md), 4vw, var(--space-xl));
+	min-height: 100vh;
+	padding-inline: clamp (1.25rem, 5vw, 4rem);
+	padding-block: clamp(var(--space-lg), 4vw, 3rem);
 	background: var(--bg);
 }
 
 .container {
-	width: min(100%, 430px);
+	width: min(100%, 720px);
 	margin-inline: auto;
 }
 
