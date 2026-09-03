@@ -2,7 +2,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import './eventCard.css';
 
-function EventCard({ event: { id, name, where, when, price } }) {
+function EventCard({
+	event: { id, name, where, when, price },
+	viewDetailsLabel,
+}) {
 	const [day, month] = when?.date?.split(' ') || [];
 
 	return (
@@ -18,7 +21,7 @@ function EventCard({ event: { id, name, where, when, price } }) {
 
 			<Link
 				to={`/events/${id}`}
-				aria-label={`Visa detaljer för ${name}`}
+				aria-label={viewDetailsLabel}
 				className='eventCard__link'>
 				<div className='eventCard__main'>
 					<h2 className='event-title'>{name}</h2>

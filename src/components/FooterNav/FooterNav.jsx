@@ -1,10 +1,15 @@
 import { Home, CalendarDays, ShoppingCart } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import useLanguageStore from '../../store/useLanguageStore';
+import { translations } from '../../translations/translations';
 import './footerNav.css';
 
 function FooterNav() {
 	const navigate = useNavigate();
 	const location = useLocation();
+
+	const language = useLanguageStore((state) => state.language);
+	const t = translations[language].navigation;
 
 	return (
 		<nav className='footer-nav'>
@@ -12,7 +17,7 @@ function FooterNav() {
 				type='button'
 				className={`footer-nav__link ${location.pathname === '/tickets' ? 'active' : ''}`}
 				onClick={() => navigate('/tickets')}
-				aria-label='dina biljetter'>
+				aria-label={t.tickets}>
 				<Home size={24} />
 			</button>
 
@@ -20,7 +25,7 @@ function FooterNav() {
 				type='button'
 				className={`footer-nav__link ${location.pathname === '/events' ? 'active' : ''}`}
 				onClick={() => navigate('/events')}
-				aria-label='Events'>
+				aria-label={t.events}>
 				<CalendarDays size={24} />
 			</button>
 
@@ -28,7 +33,7 @@ function FooterNav() {
 				type='button'
 				className={`footer-nav__link ${location.pathname === '/cart' ? 'active' : ''}`}
 				onClick={() => navigate('/cart')}
-				aria-label='Kundvagn'>
+				aria-label={t.cart}>
 				<ShoppingCart size={24} />
 			</button>
 		</nav>

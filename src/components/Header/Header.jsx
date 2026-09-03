@@ -3,12 +3,16 @@ import { ArrowLeft, ShoppingCart } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useCartStore from '../../store/useCartStore';
 import useCartTotals from '../../hooks/useCartTotals';
+import useLanguageStore from '../../store/useLanguageStore';
+import { translations } from '../../translations/translations';
 import Drawer from '../Drawer/Drawer';
 import './header.css';
 
 export const Header = ({ activeSlide }) => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 	const [isClosing, setIsClosing] = useState(false);
+	const language = useLanguageStore((state) => state.language);
+	const t = translations[language].navigation;
 	const navigate = useNavigate();
 	const location = useLocation();
 	const cart = useCartStore((state) => state.cart);
@@ -24,19 +28,21 @@ export const Header = ({ activeSlide }) => {
 	};
 
 	const getTitle = () => {
-		if (location.pathname.startsWith('/events/')) return 'Eventdetaljer';
+		if (location.pathname.startsWith('/events/')) {
+			return t.eventDetails;
+		}
 
 		switch (location.pathname) {
 			case '/cart':
-				return 'Cart';
+				return t.cart;
 			case '/events':
-				return 'Events';
+				return t.events;
 			case '/order':
-				return 'Order';
+				return t.checkout;
 			case '/tickets':
-				return 'Biljetter';
+				return t.tickets;
 			case '/':
-				return activeSlide === 1 ? 'Events' : "Where It's @";
+				return activeSlide === 1 ? t.events : "Where It's @";
 			default:
 				return "Where It's @";
 		}
@@ -59,7 +65,7 @@ export const Header = ({ activeSlide }) => {
 							type='button'
 							className='header__icon header__icon--visible'
 							onClick={canGoBack}
-							aria-label='Gå tillbaka'>
+							aria-label={t.goBack}>
 							<ArrowLeft size={24} />
 						</button>
 					)}
@@ -72,11 +78,11 @@ export const Header = ({ activeSlide }) => {
 						type='button'
 						className='header__icon header__cart'
 						onClick={() => setIsDrawerOpen(true)}
-						aria-label='Öppna kundvagn'>
+						aria-label={t.openCart}>
 						<ShoppingCart size={24} />
 						{totalItems > 0 && (
 							<span
-								aria-label={`${totalItems} biljetter i kundvagnen`}
+								aria-label={t.cartItems(totalItems)}
 								className='header__badge'>
 								{totalItems}
 							</span>

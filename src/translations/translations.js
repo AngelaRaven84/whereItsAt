@@ -5,6 +5,36 @@ export const translations = {
 			browseEvents: 'Se evenemang',
 			continueHint: 'Svep eller tryck för att fortsätta',
 		},
+		navigation: {
+			events: 'Evenemang',
+			eventDetails: 'Evenemang',
+			cart: 'Kundvagn',
+			checkout: 'Bokning',
+			tickets: 'Mina biljetter',
+			goBack: 'Gå tillbaka',
+			openCart: 'Öppna kundvagnen',
+			cartItems: (count) =>
+				count === 1
+					? '1 biljett i kundvagnen'
+					: `${count} biljetter i kundvagnen`,
+		},
+		events: {
+			loading: 'Laddar evenemang...',
+			search: 'Sök evenemang',
+			listLabel: 'Evenemangslista',
+			empty: 'Inga evenemang hittades',
+			viewDetails: (name) => `Visa detaljer för ${name}`,
+		},
+		eventDetails: {
+			loading: 'Laddar...',
+			notFound: 'Evenemanget hittades inte',
+			intro: 'Du är på väg att boka biljetter till',
+			decreaseQuantity: 'Minska antalet biljetter',
+			increaseQuantity: 'Öka antalet biljetter',
+			quantity: (count) => `Antal biljetter: ${count}`,
+			addToCart: 'Lägg till i kundvagnen',
+			timeConnector: 'kl.',
+		},
 	},
 
 	en: {
@@ -12,6 +42,34 @@ export const translations = {
 			tagline: 'Ticketing made easy',
 			browseEvents: 'Browse events',
 			continueHint: 'Swipe or tap to continue',
+		},
+		navigation: {
+			events: 'Events',
+			eventDetails: 'Event details',
+			cart: 'Cart',
+			checkout: 'Checkout',
+			tickets: 'My tickets',
+			goBack: 'Go back',
+			openCart: 'Open cart',
+			cartItems: (count) =>
+				count === 1 ? '1 ticket in cart' : `${count} tickets in cart`,
+		},
+		events: {
+			loading: 'Loading events...',
+			search: 'Search events',
+			listLabel: 'Event list',
+			empty: 'No events found',
+			viewDetails: (name) => `View details for ${name}`,
+		},
+		eventDetails: {
+			loading: 'Loading...',
+			notFound: 'Event not found',
+			intro: `You're about to book tickets to`,
+			decreaseQuantity: 'Decrease number of tickets',
+			increaseQuantity: 'Increase number of tickets',
+			quantity: (count) => `Number of tickets: ${count}`,
+			addToCart: 'Add to cart',
+			timeConnector: 'at',
 		},
 	},
 };
