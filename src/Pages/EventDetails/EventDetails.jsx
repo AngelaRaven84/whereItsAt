@@ -20,6 +20,8 @@ function EventDetails() {
 	if (!event) return <p>{t.notFound}</p>;
 
 	const { name, where, when, price } = event;
+	const [day, month] = when?.date?.split(' ') || [];
+	const translatedMonth = translations[language].months[month] || month;
 	const totalPrice = price * quantity;
 
 	const handleAddToCart = () => {
@@ -38,7 +40,7 @@ function EventDetails() {
 
 					<h1 className='event-details__title'>{name}</h1>
 					<p className='event-details__date'>
-						{when?.date} {t.timeConnector} {when?.from} - {when?.to}
+						{day} {translatedMonth} {t.timeConnector} {when?.from} - {when?.to}
 					</p>
 					<p className='event-details__location'>@ {where}</p>
 				</div>

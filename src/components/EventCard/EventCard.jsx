@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import useLanguageStore from '../../store/useLanguageStore';
+import { translations } from '../../translations/translations';
 import './eventCard.css';
 
 function EventCard({
 	event: { id, name, where, when, price },
 	viewDetailsLabel,
 }) {
+	const language = useLanguageStore((state) => state.language);
+	const t = translations[language].eventDetails;
 	const [day, month] = when?.date?.split(' ') || [];
+	const translatedMonth = translations[language].months[month] || month;
 
 	return (
 		<motion.button
@@ -16,7 +21,7 @@ function EventCard({
 			transition={{ duration: 0.3 }}>
 			<div className='eventCard__date'>
 				<span className='eventCard__day'>{day}</span>
-				<span className='eventCard__month'>{month}</span>
+				<span className='eventCard__month'>{translatedMonth}</span>
 			</div>
 
 			<Link
