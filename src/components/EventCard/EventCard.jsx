@@ -9,7 +9,6 @@ function EventCard({
 	viewDetailsLabel,
 }) {
 	const language = useLanguageStore((state) => state.language);
-	const t = translations[language].eventDetails;
 	const [day, month] = when?.date?.split(' ') || [];
 	const translatedMonth = translations[language].months[month] || month;
 

@@ -36,7 +36,7 @@ export const translations = {
 			timeConnector: 'kl.',
 		},
 		months: {
-			januari: 'januaari',
+			januari: 'januari',
 			februari: 'februari',
 			mars: 'mars',
 			april: 'april',
