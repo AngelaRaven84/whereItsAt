@@ -1,10 +1,16 @@
 import { motion } from 'motion/react';
 import logoIcon from '../../assets/logo.png';
+import useLanguageStore from '../../store/useLanguageStore';
+import { translations } from '../../translations/translations';
+import LanguageSwitcher from '../../components/LanguageSwitcher/LanguageSwitcher';
 import './home.css';
 
 function Home() {
+	const language = useLanguageStore((state) => state.language);
+	const t = translations[language].home;
 	return (
 		<main className='page home'>
+			<LanguageSwitcher />
 			<motion.section
 				className='container center home__content'
 				initial={{ opacity: 0, y: 96 }}
@@ -14,7 +20,7 @@ function Home() {
 
 				<h1 className='page-title home__title'>Where It's @</h1>
 
-				<p className='home__tagline'>Ticketing made easy</p>
+				<p className='home__tagline'>{t.tagline}</p>
 			</motion.section>
 		</main>
 	);
