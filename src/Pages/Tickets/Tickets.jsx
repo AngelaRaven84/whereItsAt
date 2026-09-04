@@ -1,11 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import Confetti from 'react-confetti';
 import useCartStore from '../../store/useCartStore';
+import useLanguageStore from '../../store/useLanguageStore';
+import { translations } from '../../translations/translations';
 import TicketCard from '../../components/TicketCard/TicketCard';
 import './tickets.css';
 
 function Tickets() {
 	const { showConfetti, stopConfetti, purchasedTickets } = useCartStore();
+	const language = useLanguageStore((state) => state.language);
+	const t = translations[language].tickets;
+	const ticketsLabel = translations[language].navigation.tickets;
 
 	const [activeTicketId, setActiveTicketId] = useState(null);
 
@@ -32,9 +37,7 @@ function Tickets() {
 		return (
 			<main className='page tickets-page'>
 				<section className='tickets-page__inner'>
-					<p className='tickets-page__empty'>
-						Du har inga köpta biljetter ännu.
-					</p>
+					<p className='tickets-page__empty'>{t.empty}</p>
 				</section>
 			</main>
 		);
@@ -45,7 +48,7 @@ function Tickets() {
 			{showConfetti && <Confetti />}
 
 			<section className='tickets-page__inner'>
-				<div className='tickets__stack' role='list' aria-label='Dina biljetter'>
+				<div className='tickets__stack' role='list' aria-label={ticketsLabel}>
 					{sortedTickets.map((ticket, index) => {
 						const isActive = ticket.ticketId === activeTicket;
 

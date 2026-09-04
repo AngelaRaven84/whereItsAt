@@ -17,7 +17,7 @@ function Events() {
 	);
 
 	if (isLoading) return <p>{t.loading}</p>;
-	if (error) return <p>{error}</p>;
+	if (error) return <p>{t.error}</p>;
 
 	return (
 		<main className='page events'>

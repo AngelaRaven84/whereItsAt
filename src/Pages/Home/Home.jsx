@@ -16,7 +16,7 @@ function Home() {
 				initial={{ opacity: 0, y: 96 }}
 				animate={{ opacity: 1, y: -24 }}
 				transition={{ duration: 0.5 }}>
-				<img src={logoIcon} alt="Where It's @ icon" className='home__icon' />
+				<img src={logoIcon} alt={t.logoAlt} className='home__icon' />
 
 				<h1 className='page-title home__title'>Where It's @</h1>
 

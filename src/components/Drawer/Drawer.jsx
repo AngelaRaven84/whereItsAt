@@ -3,6 +3,8 @@ import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import useCartStore from '../../store/useCartStore';
 import useCartTotals from '../../hooks/useCartTotals';
+import useLanguageStore from '../../store/useLanguageStore';
+import { translations } from '../../translations/translations';
 import Button from '../Button/Button';
 import './drawer.css';
 
@@ -10,6 +12,10 @@ function Drawer({ closeDrawer, isClosing }) {
 	const navigate = useNavigate();
 	const { cart, increaseQuantity, decreaseQuantity } = useCartStore();
 	const { totalPrice } = useCartTotals(cart);
+
+	const language = useLanguageStore((state) => state.language);
+	const t = translations[language].cart;
+	const quantityLabels = translations[language].eventDetails;
 
 	return (
 		<motion.div
@@ -26,37 +32,35 @@ function Drawer({ closeDrawer, isClosing }) {
 				animate={{ x: isClosing ? '100%' : 0 }}
 				exit={{ x: '100%' }}
 				transition={{ duration: 0.25, ease: 'easeOut' }}
-				aria-label='Kundvagn'>
+				aria-label={t.title}>
 				<div className='cart-drawer__header'>
-					<h2>Din kundvagn</h2>
+					<h2>{t.title}</h2>
 
 					<button
 						type='button'
 						className='cart-drawer__close'
 						onClick={closeDrawer}
-						aria-label='Stäng kundvagn'>
+						aria-label={t.closeCart}>
 						<X size={24} />
 					</button>
 				</div>
 
 				{cart.length === 0 ? (
-					<p className='text-muted'>Kundvagnen är tom.</p>
+					<p className='text-muted'>{t.empty}</p>
 				) : (
 					<div className='cart-drawer__list'>
 						{cart.map((item) => (
 							<article key={item.id} className='cart-drawer__item'>
 								<div className='cart-drawer__info'>
 									<h3>{item.name}</h3>
-									<p>
-										{item.quantity} st · {item.price} sek/st
-									</p>
+									<p>{t.itemSummary(item.quantity, item.price)}</p>
 								</div>
 
 								<div className='drawer-quantity'>
 									<Button
 										variant='quantity'
 										onClick={() => decreaseQuantity(item.id)}
-										aria-label={`Minska antal biljetter för ${item.name}`}>
+										aria-label={quantityLabels.decreaseQuantity}>
 										-
 									</Button>
 
@@ -65,7 +69,7 @@ function Drawer({ closeDrawer, isClosing }) {
 									<Button
 										variant='quantity'
 										onClick={() => increaseQuantity(item.id)}
-										aria-label={`Öka antal biljetter för ${item.name}`}>
+										aria-label={quantityLabels.increaseQuantity}>
 										+
 									</Button>
 								</div>
@@ -76,18 +80,18 @@ function Drawer({ closeDrawer, isClosing }) {
 
 				{cart.length > 0 && (
 					<div className='cart-drawer__summary'>
-						<span>Totalt värde</span>
+						<span>{t.total}</span>
 						<strong>{totalPrice} sek</strong>
 					</div>
 				)}
 
 				<Button
-					aria-label='Gå till kundvagnen'
+					aria-label={t.goToCart}
 					onClick={() => {
 						closeDrawer();
 						navigate('/cart');
 					}}>
-					Gå till kundvagn
+					{t.goToCart}
 				</Button>
 			</motion.aside>
 		</motion.div>

@@ -16,7 +16,7 @@ function EventDetails() {
 	const t = translations[language].eventDetails;
 
 	if (isLoading) return <p>{t.loading}</p>;
-	if (error) return <p>{error}</p>;
+	if (error) return <p>{t.error}</p>;
 	if (!event) return <p>{t.notFound}</p>;
 
 	const { name, where, when, price } = event;
