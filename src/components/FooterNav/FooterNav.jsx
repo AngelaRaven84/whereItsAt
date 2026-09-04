@@ -4,7 +4,7 @@ import useLanguageStore from '../../store/useLanguageStore';
 import { translations } from '../../translations/translations';
 import './footerNav.css';
 
-function FooterNav() {
+function FooterNav({ placement = 'footer' }) {
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -12,13 +12,14 @@ function FooterNav() {
 	const t = translations[language].navigation;
 
 	return (
-		<nav className='footer-nav'>
+		<nav className={`footer-nav footer-nav--${placement}`}>
 			<button
 				type='button'
 				className={`footer-nav__link ${location.pathname === '/tickets' ? 'active' : ''}`}
 				onClick={() => navigate('/tickets')}
 				aria-label={t.tickets}>
 				<Home size={24} />
+				<span className='footer-nav__label'>{t.tickets}</span>
 			</button>
 
 			<button
@@ -27,15 +28,18 @@ function FooterNav() {
 				onClick={() => navigate('/events')}
 				aria-label={t.events}>
 				<CalendarDays size={24} />
+				<span className='footer-nav__label'>{t.events}</span>
 			</button>
-
-			<button
-				type='button'
-				className={`footer-nav__link ${location.pathname === '/cart' ? 'active' : ''}`}
-				onClick={() => navigate('/cart')}
-				aria-label={t.cart}>
-				<ShoppingCart size={24} />
-			</button>
+			{placement === 'footer' && (
+				<button
+					type='button'
+					className={`footer-nav__link ${location.pathname === '/cart' ? 'active' : ''}`}
+					onClick={() => navigate('/cart')}
+					aria-label={t.cart}>
+					<ShoppingCart size={24} />
+					<span className='footer-nav__label'>{t.cart}</span>
+				</button>
+			)}
 		</nav>
 	);
 }

@@ -5,6 +5,7 @@ import useCartStore from '../../store/useCartStore';
 import useCartTotals from '../../hooks/useCartTotals';
 import useLanguageStore from '../../store/useLanguageStore';
 import { translations } from '../../translations/translations';
+import FooterNav from '../FooterNav/FooterNav';
 import Drawer from '../Drawer/Drawer';
 import './header.css';
 
@@ -72,6 +73,8 @@ export const Header = ({ activeSlide }) => {
 				</div>
 
 				<h1 className='header__title'>{getTitle()}</h1>
+
+				<FooterNav placement='header' />
 
 				<div className='header__side header__side--right'>
 					<button
