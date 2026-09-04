@@ -22,7 +22,7 @@ function Onboarding() {
 				onSwiper={setSwiperInstance}
 				onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}>
 				<SwiperSlide>
-					<Home />
+					<Home onContinue={() => handleNavigate(1)} />
 				</SwiperSlide>
 
 				<SwiperSlide>
