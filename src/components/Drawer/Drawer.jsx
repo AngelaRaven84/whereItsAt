@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +10,8 @@ import Button from '../Button/Button';
 import './drawer.css';
 
 function Drawer({ closeDrawer, isClosing }) {
+	const closeButtonRef = useRef(null);
+	const drawerRef = useRef(null);
 	const navigate = useNavigate();
 	const { cart, increaseQuantity, decreaseQuantity } = useCartStore();
 	const { totalPrice } = useCartTotals(cart);
@@ -16,6 +19,54 @@ function Drawer({ closeDrawer, isClosing }) {
 	const language = useLanguageStore((state) => state.language);
 	const t = translations[language].cart;
 	const quantityLabels = translations[language].eventDetails;
+
+	useEffect(() => {
+		const previouslyFocusedElement = document.activeElement;
+
+		closeButtonRef.current?.focus();
+
+		return () => {
+			if (previouslyFocusedElement instanceof HTMLElement) {
+				previouslyFocusedElement.focus();
+			}
+		};
+	}, []);
+
+	useEffect(() => {
+		if (isClosing) return;
+
+		const handleKeyDown = (event) => {
+			if (event.key === 'Escape') {
+				closeDrawer();
+				return;
+			}
+
+			if (event.key !== 'Tab') return;
+
+			const buttons = drawerRef.current?.querySelectorAll(
+				'button:not(:disabled)',
+			);
+
+			if (!buttons?.length) return;
+
+			const firstButton = buttons[0];
+			const lastButton = buttons[buttons.length - 1];
+
+			if (event.shiftKey && document.activeElement === firstButton) {
+				event.preventDefault();
+				lastButton.focus();
+			} else if (!event.shiftKey && document.activeElement === lastButton) {
+				event.preventDefault();
+				firstButton.focus();
+			}
+		};
+
+		document.addEventListener('keydown', handleKeyDown);
+
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown);
+		};
+	}, [closeDrawer, isClosing]);
 
 	return (
 		<motion.div
@@ -26,6 +77,7 @@ function Drawer({ closeDrawer, isClosing }) {
 			exit={{ opacity: 0 }}
 			transition={{ duration: 0.25 }}>
 			<motion.aside
+				ref={drawerRef}
 				className='cart-drawer'
 				onClick={(e) => e.stopPropagation()}
 				initial={{ x: '100%' }}
@@ -40,7 +92,8 @@ function Drawer({ closeDrawer, isClosing }) {
 						type='button'
 						className='cart-drawer__close'
 						onClick={closeDrawer}
-						aria-label={t.closeCart}>
+						aria-label={t.closeCart}
+						ref={closeButtonRef}>
 						<X size={24} />
 					</button>
 				</div>
