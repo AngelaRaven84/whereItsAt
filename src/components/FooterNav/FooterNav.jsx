@@ -1,4 +1,4 @@
-import { Home, CalendarDays, ShoppingCart } from 'lucide-react';
+import { Ticket, CalendarDays, ShoppingCart } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useLanguageStore from '../../store/useLanguageStore';
 import { translations } from '../../translations/translations';
@@ -18,7 +18,7 @@ function FooterNav({ placement = 'footer' }) {
 				className={`footer-nav__link ${location.pathname === '/tickets' ? 'active' : ''}`}
 				onClick={() => navigate('/tickets')}
 				aria-label={t.tickets}>
-				<Home size={24} />
+				<Ticket size={24} />
 				<span className='footer-nav__label'>{t.tickets}</span>
 			</button>
 
