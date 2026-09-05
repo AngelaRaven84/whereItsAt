@@ -48,7 +48,7 @@
 
 .event-details__ticket {
 	border: 1px solid var(--primary);
-	border-radius: var(--radius-sm);
+	border-radius: var(--radius-md);
 	overflow: hidden;
 }
 
@@ -77,4 +77,16 @@
 	font-size: 1.2rem;
 	font-weight: 700;
 	border-inline: 1px solid var(--primary);
+}
+
+.event-details__quantity .btn--quantity {
+	height: auto;
+	min-height: 52px;
+	border: 0;
+}
+
+.event-details__quantity .btn--quantity:hover,
+.event-details__quantity .btn--quantity:focus-visible {
+	background: rgba(245, 107, 154, 0.18);
+	outline: none;
 }

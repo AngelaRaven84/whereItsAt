@@ -2,6 +2,8 @@
 	width: 100%;
 	padding: var(--space-md);
 	border-radius: var(--radius-sm);
+	border: none;
+	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
 	background: var(--button);
 	color: var(--text);
 	font-family: var(--font-second);
@@ -10,7 +12,8 @@
 	cursor: pointer;
 	transition:
 		transform 0.2s ease,
-		opacity 0.2s ease;
+		opacity 0.2s ease,
+		box-shadow 0.2s ease;
 }
 
 .btn--primary:hover {
@@ -19,7 +22,8 @@
 }
 
 .btn--primary:active {
-	transform: translateY(0);
+	transform: translateY(2px);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .btn--primary:focus-visible {

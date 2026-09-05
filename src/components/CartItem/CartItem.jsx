@@ -1,11 +1,19 @@
 import Button from '../Button/Button';
 import useCartStore from '../../store/useCartStore';
+import useLanguageStore from '../../store/useLanguageStore';
+import { translations } from '../../translations/translations';
 import './cartItem.css';
 
 function CartItem({ item }) {
 	const { increaseQuantity, decreaseQuantity, removeFromCart } = useCartStore();
 
 	const { id, name, when, price, quantity } = item;
+
+	const language = useLanguageStore((state) => state.language);
+	const [day, month] = when?.date?.split(' ') || [];
+	const translatedMonth = translations[language].months[month] || month;
+	const timeConnector = translations[language].eventDetails.timeConnector;
+	const t = translations[language].eventDetails;
 
 	const handleDecrease = () => {
 		if (quantity <= 1) {
@@ -21,7 +29,7 @@ function CartItem({ item }) {
 				<h2 className='cart-item__title'>{name}</h2>
 
 				<p className='cart-item__date'>
-					{when?.date} kl {when?.from} - {when?.to}
+					{day} {translatedMonth} {timeConnector} {when?.from} - {when?.to}
 				</p>
 			</div>
 
@@ -31,7 +39,7 @@ function CartItem({ item }) {
 				<div className='cart-item__quantity'>
 					<Button
 						variant='quantity'
-						aria-label={`Minska antal biljetter för ${name}`}
+						aria-label={t.decreaseQuantity}
 						onClick={handleDecrease}>
 						-
 					</Button>
@@ -39,7 +47,7 @@ function CartItem({ item }) {
 
 					<Button
 						variant='quantity'
-						aria-label={`Öka antal biljetter för ${name}`}
+						aria-label={t.increaseQuantity}
 						onClick={() => increaseQuantity(id)}>
 						+
 					</Button>
