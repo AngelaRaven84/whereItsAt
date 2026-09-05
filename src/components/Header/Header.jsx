@@ -61,7 +61,7 @@ export const Header = ({ activeSlide }) => {
 		<>
 			<header className='header'>
 				<div className='header__side'>
-					{location.pathname !== '/' && (
+					{location.pathname !== '/' && location.pathname !== '/events' && (
 						<button
 							type='button'
 							className='header__icon header__icon--visible'
