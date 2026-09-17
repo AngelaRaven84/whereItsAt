@@ -10,6 +10,10 @@ Projektet använder bland annat React Router, Zustand med localStorage, API-anro
 
 The project uses React Router, Zustand with localStorage persistence, Axios for API requests, Motion for animations, and supports both Swedish and English. I also focused on responsive design and accessibility using semantic HTML, ARIA labels and testing with WAVE.
 
+## Live demo
+
+[View live project](https://where-its-at.vercel.app/)
+
 ## Screenshots
 
 ### Home
