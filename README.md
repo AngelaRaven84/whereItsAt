@@ -1,6 +1,14 @@
-# Where It's @
+### Svenska
 
-Where It's @ är en React-applikation där användaren kan bläddra bland events, läsa detaljer, lägga biljetter i kundvagn och genomföra ett köp. Efter köp visas biljetter med sektion, sittplats och unikt ticket-ID.
+**Where It's @** är en mobile-first biljettapplikation byggd i React. Användaren kan söka bland evenemang, se eventdetaljer, lägga biljetter i kundvagnen, genomföra ett köp och få individuellt genererade biljetter.
+
+Projektet använder bland annat React Router, Zustand med localStorage, API-anrop med Axios, animationer med Motion samt språkstöd för svenska och engelska. Jag har även arbetat med responsivitet och tillgänglighet genom semantisk HTML, aria-labels och testning med WAVE.
+
+### English
+
+**Where It's @** is a mobile-first ticket booking application built with React. Users can browse and search events, view event details, add tickets to a cart, complete a purchase and receive individually generated tickets.
+
+The project uses React Router, Zustand with localStorage persistence, Axios for API requests, Motion for animations, and supports both Swedish and English. I also focused on responsive design and accessibility using semantic HTML, ARIA labels and testing with WAVE.
 
 ## Funktioner
 
