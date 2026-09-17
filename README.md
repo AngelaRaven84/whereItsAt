@@ -14,19 +14,19 @@ The project uses React Router, Zustand with localStorage persistence, Axios for 
 
 ### Home
 
-![Where It's @ home page](src\assets\docs\screenshots\home.png)
+![Where It's @ home page](src/assets/docs/screenshots/home.png)
 
 ### Events
 
-![Event list](src\assets\docs\screenshots\events.png)
+![Event list](src/assets/docs/screenshots/events.png)
 
 ### Cart
 
-![Cart](src\assets\docs\screenshots\cart.png)
+![Cart](src/assets/docs/screenshots/cart.png)
 
 ### Tickets
 
-![Purchased tickets](src\assets\docs\screenshots\tickets.png)
+![Purchased tickets](src/assets/docs/screenshots/tickets.png)
 
 ## Funktioner
 
