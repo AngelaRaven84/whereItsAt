@@ -2,6 +2,24 @@
 
 Where It's @ är en React-applikation där användaren kan bläddra bland events, läsa detaljer, lägga biljetter i kundvagn och genomföra ett köp. Efter köp visas biljetter med sektion, sittplats och unikt ticket-ID.
 
+## Screenshots
+
+### Home
+
+![Where It's @ home page](src\assets\docs\screenshots\home.png)
+
+### Events
+
+![Event list](src\assets\docs\screenshots\events.png)
+
+### Cart
+
+![Cart](src\assets\docs\screenshots\cart.png)
+
+### Tickets
+
+![Purchased tickets](src\assets\docs\screenshots\tickets.png)
+
 ## Funktioner
 
 - Lista events från API
